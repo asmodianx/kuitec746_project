@@ -50,7 +50,7 @@ def api_get_dmd(did: str) -> dmd:
     return dmd
 
 @app.get("/ifm/{did}")
-def get_ifm(did: str) -> ifm:
+def api_get_ifm(did: str) -> ifm:
     did = uuid.UUID(did)
     ifm = get_ifm(did)
     return ifm
