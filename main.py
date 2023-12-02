@@ -3,8 +3,8 @@ import uuid
 from fastapi import FastAPI, HTTPException
 from typing import List
 
-from models.document_model import df, dmd, ifm, ofm, api, sr
-from repositories.document_repository import get_all_df, get_all_dmd, get_df, get_dmd, create_df, create_dmd, update_df, update_dmd, delete_df, delete_dmd, purge_dmd, get_all_ifm, get_ifm, create_ifm, update_ifm, delete_ifm, get_all_ofm, get_ofm, create_ofm, update_ofm, delete_ofm, get_all_api, get_api, create_api, update_api, delete_api, purge_api, get_all_ar, get_sr, create_sr, update_sr, delete_sr
+from document_model import df, dmd, ifm, ofm, api, sr
+from document_repository import get_all_df, get_all_dmd, get_df, get_dmd, create_df, create_dmd, update_df, update_dmd, delete_df, delete_dmd, purge_dmd, get_all_ifm, get_ifm, create_ifm, update_ifm, delete_ifm, get_all_ofm, get_ofm, create_ofm, update_ofm, delete_ofm, get_all_api, get_api, create_api, update_api, delete_api, purge_api, get_all_ar, get_sr, create_sr, update_sr, delete_sr
 
 app = FastAPI()
 
