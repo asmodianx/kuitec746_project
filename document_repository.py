@@ -1,7 +1,7 @@
 import uuid
 from typing import List
 
-from models.document_model import Document, DocumentMeta
+from document_model import df, dmd, ifm, ofm, api, sr
 from repositories.db_connection import DBConnection
 
 # Documents
