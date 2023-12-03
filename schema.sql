@@ -1,4 +1,4 @@
-SQL Created on PostgreSQL v14 using PgAdmin4
+/*SQL Created on PostgreSQL v14 using PgAdmin4 */
 CREATE SCHEMA IF NOT EXISTS kershner
 CREATE TABLE IF NOT EXISTS kershner."API"
 (
