@@ -159,7 +159,7 @@ def create_dmd(dmd: dmd) -> dmd:
    did = uuid.uuid4()
    dmd.FileMetaDataGUID = did
    cur.execute(INSERT_MD, (
-    dmd.APIGUID, 
+        dmd.APIGUID, 
         dmd.FileMetaDataGUID, 
         dmd.Name, 
         dmd.Description, 
@@ -294,9 +294,9 @@ def get_all_ofm() -> List[ofm]:
             ofm(
             OutputFormatGuid=str(row[0]),
             Name=str(row[1]),
-                Description=str(row[2]), 
-                FunctionName=str(row[3]), 
-                FileExtension=str(row[4]),
+            Description=str(row[2]), 
+            FunctionName=str(row[3]), 
+            FileExtension=str(row[4]),
             FileMIMEType=str(row[5])
             )
         )
@@ -442,8 +442,8 @@ def get_all_sr() -> List[sr]:
     for row in cur:
         sr_list.append(
             sr(
-            SearchGUID=str(row[0]),
-            Name=str(row[1]),
+                SearchGUID=str(row[0]),
+                Name=str(row[1]),
                 Description=str(row[2])
             )
         )
@@ -469,7 +469,7 @@ def create_sr(sr: sr) -> sr:
     did = uuid.uuid4()
     sr.OutputFormatGuid = did
     cur.execute(INSERT_SEARCH, (
-    sr.SearchGUID, 
+        sr.SearchGUID, 
         sr.Name,
         sr.Description
         )
