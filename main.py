@@ -23,7 +23,7 @@ def api_get_all_dmd() -> List[dmd]:
 @app.get("/ifm")
 def api_get_all_ifm() -> List[ifm]:
     return get_all_ifm()
-    
+
 @app.get("/ofm")
 def api_get_all_ofm() -> List[ofm]:
     return get_all_ifm()
@@ -36,7 +36,7 @@ def api_get_all_api() -> List[api]:
 def api_get_all_sr() -> List[sr]:
     return get_all_sr()
 
-# === get one record     
+# === get one record
 @app.get("/df/{did}")
 def api_get_df(did: str) -> df:
     did = uuid.UUID(FileMetaDataGUID)
@@ -72,7 +72,6 @@ def api_get_sr(did: str) -> sr:
     sr = get_ofm(sr)
     return sr
 
-
 #=== create record
 @app.post("/df")
 def api_create_df(df: df) -> List[df]:
@@ -85,7 +84,7 @@ def api_create_dmd(dmd: dmd) -> List[dmd]:
 @app.post("/ifm")
 def api_create_ifm() -> List[ifm]:
     return create_ifm()
-    
+
 @app.post("/ofm")
 def api_create_ofm() -> List[ofm]:
     return create_ofm()
@@ -135,7 +134,6 @@ def api_update_sr(did: str,  sr:sr) -> sr:
     if did != df.fileGuid:
         raise HTTPException(status_code=400, detail="path id and object id must match")
     return update_sr(did, sr)
-
 
 # delete record
 
