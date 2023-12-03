@@ -15,12 +15,12 @@ class DBConnection:
             config = EnvConfig()
             try:
                 cls._connection = psycopg2.connect(
-                    dbname=config.DB_NAME,
-                    user=config.DB_USERNAME,
-                    password=config.DB_PASSWORD,
-                    host=config.DB_HOST,
-                    port=config.DB_PORT,
-                    options="-c search_path="+config.SCHEMA)
+                dbname=config.DB_NAME,
+                user=config.DB_USERNAME,
+                password=config.DB_PASSWORD,
+                host=config.DB_HOST,
+                port=config.DB_PORT,
+                options="-c search_path="+config.SCHEMA)
                 print('Database connection opened.')
             except psycopg2.DatabaseError as db_error:
                 print("Error: \n{0}".format(db_error))
@@ -38,4 +38,3 @@ class DBConnection:
     @property
     def connection(self):
         return self._connection
-
