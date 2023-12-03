@@ -70,7 +70,7 @@ def get_all_df() -> List[df]:
 				fileGuid=str(row[0]),
 				fileContents=str(row[1])
         	)
-	)
+        )
     return df
 
 def get_all_dmd() -> List[dmd]:
@@ -111,6 +111,7 @@ def get_df(did: uuid) -> List[df]:
 				fileGuid=str(row[0]),
 				fileContents=str(row[1])
         		)
+        )
     return df
 
 def get_dmd(did: uuid) -> List[dmd]:
