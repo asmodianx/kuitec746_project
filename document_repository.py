@@ -2,7 +2,7 @@ import uuid
 from typing import List
 
 from document_model import df, dmd, ifm, ofm, api, sr
-from repositories.db_connection import DBConnection
+from db_connection import DBConnection
 
 # Documents
 #GET_ALL_FILE_BY_API = 'select A."API",A."APIGUID",A."OwnerEmailAddress",B."Name",B."Description",B."DateModified",B."DateUploaded",B."Revision",B."Name",B."IsCurrent",D."FileMIMEType",D."FileExtension",C."fileGuid" from "kershner"."API" A, "kershner"."FileMetadata" B,"kershner"."InputFile" C,"kershner"."InputFileFormat" D WHERE A."APIGUID" = %s AND A."APIGUID" = B."APIGUID" AND B."FileGuid" = C."fileGuid" AND  B."InputFormatGuid" = D."InputFormatGuid" AND A."IsDeleted" = false AND A."IsDisabled" = false AND A."DateExpires"::date > current_date AND B."IsCurrent" = true AND B."IsDeleted" = false;'
@@ -59,27 +59,28 @@ DELETE_SEARCH = 'DELETE * FROM "kershner"."Search" WHERE "SearchGUID" = %s;'
 
 
 def get_all_df() -> List[df]:
-    df = []
+    df_list = []
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_ALL_FILES)
 #"fileGuid", "fileContents"
     for row in cur:
-        df.append(
+        df_list.append(
         	df(
 				fileGuid=str(row[0]),
 				fileContents=str(row[1])
         	)
-    return df
+        )
+    return df_list
 
 def get_all_dmd() -> List[dmd]:
-    df = []
+    dmd_list = []
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_ALL_MD)
 	#"APIGUID", "FileMetaDataGUID", "Name", "Description", "DateUploaded", "DateModified", "Revision", "IsCurrent", "IsDeleted", "FileGuid", "InputFormatGuid", "FileHash", "FileCacheExpiration"
     for row in cur:
-        dmd.append(
+        dmd_list.append(
         	dmd(
 				APIGUID=str(row[0]),
 				FileMetaDataGUID=str(row[1]),
@@ -95,30 +96,32 @@ def get_all_dmd() -> List[dmd]:
 				FileHash=str(row[11]),
 				FileCacheExpiration=str(row[12])
         		)
-    return dmd
+        )
+    return dmd_list
 
 def get_df(did: uuid) -> List[df]:
-    df = []
+    df_list = []
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_FILE, did)
 #"fileGuid", "fileContents"
     for row in cur:
-        df.append(
+        df_list.append(
         	df(
 				fileGuid=str(row[0]),
 				fileContents=str(row[1])
         		)
-    return df
+        )
+    return df_list
 
 def get_dmd(did: uuid) -> List[dmd]:
-    df = []
+    dmd_list = []
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_MD, did)
 	#"APIGUID", "FileMetaDataGUID", "Name", "Description", "DateUploaded", "DateModified", "Revision", "IsCurrent", "IsDeleted", "FileGuid", "InputFormatGuid", "FileHash", "FileCacheExpiration"
     for row in cur:
-        dmd.append(
+        dmd_list.append(
         	dmd(
 				APIGUID=str(row[0]),
 				FileMetaDataGUID=str(row[1]),
@@ -134,7 +137,8 @@ def get_dmd(did: uuid) -> List[dmd]:
 				FileHash=str(row[11]),
 				FileCacheExpiration=str(row[12])
         		)
-    return dmd
+        )
+    return dmd_list
 
 def create_df(df: df) -> df:
     db = DBConnection()
@@ -212,13 +216,13 @@ def purge_dmd(did: uuid):
 
 #==== input format
 def get_all_ifm() -> List[ifm]:
-    df = []
+    ifm_list = []
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_ALL_IF)
 	#"InputFormatGuid", "Name", "Description", "FileExtension", "FileMIMEType"
     for row in cur:
-        ifm.append(
+        ifm_list.append(
         	ifm(
 				InputFormatGuid=str(row[0]),
 				Name=str(row[1]),
@@ -226,15 +230,16 @@ def get_all_ifm() -> List[ifm]:
 				FileExtension=str(row[3]),
 				FileMIMEType=str(row[4])
         		)
-    return ifm
+        )
+    return ifm_list
 
 def get_ifm(did: uuid) -> List[ifm]:
-    df = []
+    ifm_list = []
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_IF, did)
     for row in cur:
-        ifm.append(
+        ifm_list.append(
         	ifm(
 				InputFormatGuid=str(row[0]),
 				Name=str(row[1]),
@@ -242,7 +247,8 @@ def get_ifm(did: uuid) -> List[ifm]:
 				FileExtension=str(row[3]),
 				FileMIMEType=str(row[4])
         		)
-    return df
+        )
+    return ifm_list
 
 def create_ifm(ifm: ifm) -> ifm:
     db = DBConnection()
@@ -278,13 +284,13 @@ def delete_ifm(did: uuid):
 #==== output format
 #"OutputFormatGuid", "Name", "Description", "FunctionName", "FileExtension", "FileMIMEType" 
 def get_all_ofm() -> List[ofm]:
-    documents = []
+    ofm_list = []
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_ALL_OF)
 
     for row in cur:
-        ofm.append(
+        ofm_list.append(
         	ofm(
 				OutputFormatGuid=str(row[0]),
 				Name=str(row[1]),
@@ -293,9 +299,10 @@ def get_all_ofm() -> List[ofm]:
         		FileExtension=str(row[4]),
 				FileMIMEType=str(row[5])
         		)
-    return ofm
+        )
+    return ofm_list
 def get_ofm(did: uuid) -> List[ofm]:
-    df = []
+    ofm_list = []
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_OF, did)
@@ -309,7 +316,8 @@ def get_ofm(did: uuid) -> List[ofm]:
         		FileExtension=str(row[4]),
 				FileMIMEType=str(row[5])
         		)
-    return df
+        )
+    return ofm_list
 
 def create_ofm(ofm: ofm) -> ofm:
     db = DBConnection()
@@ -345,12 +353,12 @@ def delete_ofm(did: uuid):
 #=== API
 #"APIGUID", "API", "OwnerEmailAddress", "DateExpires", "PermissionCreate", "PermissionGlobalAdmin", "IsDisabled", "IsDeleted"
 def get_all_api() -> List[api]:
-    documents = []
+    api_list = []
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_ALL_API)
     for row in cur:
-        api.append(
+        api_list.append(
         	api(
 				APIGUID=str(row[0]),
 				API=str(row[1]),
@@ -361,14 +369,15 @@ def get_all_api() -> List[api]:
 				IsDisabled=bool(row[6]),
 				IsDeleted=bool(row[7])
         		)
-    return api    
+        )
+    return api_list
 def get_api(did: uuid) -> List[api]:
-    api = []
+    api_list = []
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_API, did)
     for row in cur:
-        api.append(
+        api_list.append(
         	api(
 				APIGUID=str(row[0]),
 				API=str(row[1]),
@@ -379,7 +388,8 @@ def get_api(did: uuid) -> List[api]:
 				IsDisabled=bool(row[6]),
 				IsDeleted=bool(row[7])
         		)
-    return api
+        )
+    return api_list
 
 def create_api(api: api) -> api:
     db = DBConnection()
@@ -424,32 +434,34 @@ def purge_api(did: uuid):
 
 #==== search
 def get_all_sr() -> List[sr]:
-    documents = []
+    sr_list = []
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_ALL_SEARCH)
     #"SearchGUID", "Name", "Description"
     for row in cur:
-        sr.append(
+        sr_list.append(
         	sr(
 				SearchGUID=str(row[0]),
 				Name=str(row[1]),
         		Description=str(row[2])
         		)
-    return sr
+        )
+    return sr_list
 def get_sr(did: uuid) -> List[sr]:
-    sr = []
+    sr_list = []
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_SEARCH, did)
     for row in cur:
-        sr.append(
+        sr_list.append(
         	sr(
 				SearchGUID=str(row[0]),
 				Name=str(row[1]),
         		Description=str(row[2])
         		)
-    return sr
+        )
+    return sr_list
 
 def create_sr(sr: sr) -> sr:
     db = DBConnection()

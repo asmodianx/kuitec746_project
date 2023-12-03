@@ -21,7 +21,7 @@ class EnvConfig:
             cls.SCHEMA = EnvConfig.get_env_variable('SCHEMA')
         return cls._instance
 
-    def get_env_variable(name: str) -> str:
+    def get_env_variable(self, name: str) -> str:
         try:
             return os.environ[name]
         except KeyError:
