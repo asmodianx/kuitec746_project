@@ -2,7 +2,7 @@ import uuid
 from typing import List
 
 from document_model import df, dmd, ifm, ofm, api, sr
-from repositories.db_connection import DBConnection
+from db_connection import DBConnection
 
 # Documents
 #GET_ALL_FILE_BY_API = 'select A."API",A."APIGUID",A."OwnerEmailAddress",B."Name",B."Description",B."DateModified",B."DateUploaded",B."Revision",B."Name",B."IsCurrent",D."FileMIMEType",D."FileExtension",C."fileGuid" from "kershner"."API" A, "kershner"."FileMetadata" B,"kershner"."InputFile" C,"kershner"."InputFileFormat" D WHERE A."APIGUID" = %s AND A."APIGUID" = B."APIGUID" AND B."FileGuid" = C."fileGuid" AND  B."InputFormatGuid" = D."InputFormatGuid" AND A."IsDeleted" = false AND A."IsDisabled" = false AND A."DateExpires"::date > current_date AND B."IsCurrent" = true AND B."IsDeleted" = false;'
@@ -95,6 +95,7 @@ def get_all_dmd() -> List[dmd]:
 				FileHash=str(row[11]),
 				FileCacheExpiration=str(row[12])
         		)
+        )
     return dmd
 
 def get_df(did: uuid) -> List[df]:
@@ -134,6 +135,7 @@ def get_dmd(did: uuid) -> List[dmd]:
 				FileHash=str(row[11]),
 				FileCacheExpiration=str(row[12])
         		)
+        )
     return dmd
 
 def create_df(df: df) -> df:
@@ -226,6 +228,7 @@ def get_all_ifm() -> List[ifm]:
 				FileExtension=str(row[3]),
 				FileMIMEType=str(row[4])
         		)
+        )
     return ifm
 
 def get_ifm(did: uuid) -> List[ifm]:
@@ -242,6 +245,7 @@ def get_ifm(did: uuid) -> List[ifm]:
 				FileExtension=str(row[3]),
 				FileMIMEType=str(row[4])
         		)
+        )
     return df
 
 def create_ifm(ifm: ifm) -> ifm:
@@ -293,6 +297,7 @@ def get_all_ofm() -> List[ofm]:
         		FileExtension=str(row[4]),
 				FileMIMEType=str(row[5])
         		)
+        )
     return ofm
 def get_ofm(did: uuid) -> List[ofm]:
     df = []
@@ -309,6 +314,7 @@ def get_ofm(did: uuid) -> List[ofm]:
         		FileExtension=str(row[4]),
 				FileMIMEType=str(row[5])
         		)
+        )
     return df
 
 def create_ofm(ofm: ofm) -> ofm:
@@ -361,6 +367,7 @@ def get_all_api() -> List[api]:
 				IsDisabled=bool(row[6]),
 				IsDeleted=bool(row[7])
         		)
+        )
     return api    
 def get_api(did: uuid) -> List[api]:
     api = []
@@ -379,6 +386,7 @@ def get_api(did: uuid) -> List[api]:
 				IsDisabled=bool(row[6]),
 				IsDeleted=bool(row[7])
         		)
+        )
     return api
 
 def create_api(api: api) -> api:
@@ -435,7 +443,8 @@ def get_all_sr() -> List[sr]:
 				SearchGUID=str(row[0]),
 				Name=str(row[1]),
         		Description=str(row[2])
-        		)
+        	)
+        )
     return sr
 def get_sr(did: uuid) -> List[sr]:
     sr = []
@@ -448,7 +457,8 @@ def get_sr(did: uuid) -> List[sr]:
 				SearchGUID=str(row[0]),
 				Name=str(row[1]),
         		Description=str(row[2])
-        		)
+        	)
+        )
     return sr
 
 def create_sr(sr: sr) -> sr:
@@ -478,4 +488,4 @@ def delete_sr(did: uuid):
     cur = db.get_cursor()
     cur.execute(DELETE_SEARCH, [did])
     db.connection.commit()
-    return   
+    return
