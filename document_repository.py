@@ -216,7 +216,7 @@ def purge_dmd(did: uuid):
 
 #==== input format
 def get_all_ifm() -> List[ifm]:
-    df_list = []
+    ifm_list = []
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_ALL_IF)
