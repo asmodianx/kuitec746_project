@@ -167,7 +167,7 @@ def create_dmd(dmd: dmd) -> dmd:
         dmd.DateModified, 
         dmd.Revision, 
         dmd.IsCurrent, 
-       dmd.IsDeleted, 
+        dmd.IsDeleted, 
         dmd.FileGuid, 
         dmd.InputFormatGuid, 
         dmd.FileHash, 
@@ -311,9 +311,9 @@ def get_ofm(did: uuid) -> List[ofm]:
             ofm(
             OutputFormatGuid=str(row[0]),
             Name=str(row[1]),
-                Description=str(row[2]), 
-                FunctionName=str(row[3]), 
-                FileExtension=str(row[4]),
+            Description=str(row[2]), 
+            FunctionName=str(row[3]), 
+            FileExtension=str(row[4]),
             FileMIMEType=str(row[5])
             )
         )
@@ -365,9 +365,9 @@ def get_all_api() -> List[api]:
                 OwnerEmailAddress=str(row[2]), 
                 DateExpires=str(row[3]), 
                 PermissionCreate=bool(row[4]),
-            PermissionGlobalAdmin=bool(row[5]),
-            IsDisabled=bool(row[6]),
-            IsDeleted=bool(row[7])
+                PermissionGlobalAdmin=bool(row[5]),
+               IsDisabled=bool(row[6]),
+               IsDeleted=bool(row[7])
                 )
         )
     return api    
@@ -381,9 +381,9 @@ def get_api(did: uuid) -> List[api]:
             api(
             APIGUID=str(row[0]),
             API=str(row[1]),
-                OwnerEmailAddress=str(row[2]), 
-                DateExpires=str(row[3]), 
-                PermissionCreate=bool(row[4]),
+            OwnerEmailAddress=str(row[2]), 
+            DateExpires=str(row[3]), 
+            PermissionCreate=bool(row[4]),
             PermissionGlobalAdmin=bool(row[5]),
             IsDisabled=bool(row[6]),
             IsDeleted=bool(row[7])
@@ -458,7 +458,7 @@ def get_sr(did: uuid) -> List[sr]:
             sr(
             SearchGUID=str(row[0]),
             Name=str(row[1]),
-                Description=str(row[2])
+            Description=str(row[2])
             )
         )
     return sr
