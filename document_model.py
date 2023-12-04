@@ -26,8 +26,8 @@ class api(CamelModel):
     API: Optional[str] = None
     OwnerEmailAddress: Optional[str] = None
     DateExpires: Optional[str] = None
-    PermissionCreate: Optional[str] = None
-    PermissionGlobalAdmin: Optional[str] = None
+    PermissionCreate: Optional[bool] = None
+    PermissionGlobalAdmin: Optional[bool] = None
     IsDisabled: Optional[bool] = None
     IsDeleted: Optional[bool] = None
 
