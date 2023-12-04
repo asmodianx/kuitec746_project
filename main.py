@@ -20,7 +20,7 @@ app = FastAPI()
 
 #LINT ERROR:  main.py:159:0: C0116: Missing function or method docstring (missing-function-docstring)
 
-# === get all record 
+# === get all record
 @app.get("/df")
 def api_get_all_df() -> List[df]:
     return get_all_df()
