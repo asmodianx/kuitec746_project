@@ -1,7 +1,8 @@
 import uuid
 
-from fastapi import FastAPI, HTTPException
 from typing import List
+from fastapi import FastAPI, HTTPException
+
 
 from document_model import df, dmd, ifm, ofm, api, sr
 from document_repository import (get_all_df, get_all_dmd, get_df, get_dmd, create_df, 
