@@ -138,56 +138,56 @@ def get_dmd(did: uuid) -> List[dmd]:
         )
     return dmd_list
 
-def create_df(df: df) -> df:
+def create_df(df_create: df) -> df:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.uuid4()
-    df.fileGuid = did
+    df_create.fileGuid = did
     cur.execute(INSERT_FILE, (
-        df.fileGuid,
-        df.fileContents
+        df_create.fileGuid,
+        df_create.fileContents
         )
     )
     db.connection.commit()
     return get_df(did)
 
-def create_dmd(dmd: dmd) -> dmd:
+def create_dmd(dmd_create: dmd) -> dmd:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.uuid4()
-    dmd.FileMetaDataGUID = did
+    dmd_create.FileMetaDataGUID = did
     cur.execute(INSERT_MD, (
-        dmd.APIGUID,
-        dmd.FileMetaDataGUID,
-        dmd.Name,
-        dmd.Description,
-        dmd.DateUploaded,
-        dmd.DateModified,
-        dmd.Revision,
-        dmd.IsCurrent,
-        dmd.IsDeleted,
-        dmd.FileGuid,
-        dmd.InputFormatGuid,
-        dmd.FileHash,
-        dmd.FileCacheExpiration
+        dmd_create.APIGUID,
+        dmd_create.FileMetaDataGUID,
+        dmd_create.Name,
+        dmd_create.Description,
+        dmd_create.DateUploaded,
+        dmd_create.DateModified,
+        dmd_create.Revision,
+        dmd_create.IsCurrent,
+        dmd_create.IsDeleted,
+        dmd_create.FileGuid,
+        dmd_create.InputFormatGuid,
+        dmd_create.FileHash,
+        dmd_create.FileCacheExpiration
        )
     )
     db.connection.commit()
     return get_dmd(did)
 
-def update_df(df: df) -> df:
+def update_df(df_update: df) -> df:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.UUID(df.fileGuid)
-    cur.execute(UPDATE_FILE, (did, df.fileContents))
+    did = uuid.UUID(df_update.fileGuid)
+    cur.execute(UPDATE_FILE, (did, df_update.fileContents))
     db.connection.commit()
     return get_df(did)
 
-def update_dmd(dmd: dmd) -> dmd:
+def update_dmd(dmd_update: dmd) -> dmd:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.UUID(dmd.FileMetaDataGUID)
-    cur.execute(UPDATE_MD, (did, dmd.fileContents))
+    did = uuid.UUID(dmd_update.FileMetaDataGUID)
+    cur.execute(UPDATE_MD, (did, dmd_update.fileContents))
     db.connection.commit()
     return get_dmd(did)
 
@@ -264,11 +264,11 @@ def create_ifm(ifm: ifm) -> ifm:
     db.connection.commit()
     return get_ifm(did)
 
-def update_ifm(ifm: ifm) -> ifm:
+def update_ifm(ifm_update: ifm) -> ifm:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.UUID(ifm.InputFormatGuid)
-    cur.execute(UPDATE_IF, (did, ifm.Name, ifm.Description, ifm.FileExtension, ifm.FileMIMEType))
+    did = uuid.UUID(ifm_update.InputFormatGuid)
+    cur.execute(UPDATE_IF, (did, ifm_update.Name, ifm_update.Description, ifm_update.FileExtension, ifm_update.FileMIMEType))
     db.connection.commit()
     return get_ifm(did)
 
@@ -317,27 +317,27 @@ def get_ofm(did: uuid) -> List[ofm]:
         )
     return ofm_list
 
-def create_ofm(ofm: ofm) -> ofm:
+def create_ofm(ofm_create: ofm) -> ofm:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.uuid4()
-    ofm.OutputFormatGuid = did
+    ofm_create.OutputFormatGuid = did
     cur.execute(INSERT_OF, (
-    ofm.OutputFormatGuid, 
-        ofm.Name,
-        ofm.FunctionName,
-        ofm.FileExtension,
-        ofm.FileMIMEType
+        ofm_create.OutputFormatGuid, 
+        ofm_create.Name,
+        ofm_create.FunctionName,
+        ofm_create.FileExtension,
+        ofm_create.FileMIMEType
         )
     )
     db.connection.commit()
     return get_ofm(did)
 
-def update_ofm(ofm: ofm) -> ofm:
+def update_ofm(ofm_update: ofm) -> ofm:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.UUID(ofm.OutputFormatGuid)
-    cur.execute(UPDATE_OF, (did, ofm.Name, ofm.FunctionName, ofm.FileExtension, ofm.FileMIMEType))
+    did = uuid.UUID(ofm_update.OutputFormatGuid)
+    cur.execute(UPDATE_OF, (did, ofm_update.Name, ofm_update.FunctionName, ofm_update.FileExtension, ofm_update.FileMIMEType))
     db.connection.commit()
     return get_ofm(did)
 
