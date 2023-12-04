@@ -293,7 +293,7 @@ def get_all_ofm() -> List[ofm]:
                 OutputFormatGuid=str(row[0]),
                 Name=str(row[1]),
                 Description=str(row[2]), 
-                FunctionName=str(row[3]), 
+                FunctionName=str(row[3]),
                 FileExtension=str(row[4]),
                 FileMIMEType=str(row[5])
             )
@@ -309,8 +309,8 @@ def get_ofm(did: uuid) -> List[ofm]:
             ofm(
                 OutputFormatGuid=str(row[0]),
                 Name=str(row[1]),
-                Description=str(row[2]), 
-                FunctionName=str(row[3]), 
+                Description=str(row[2]),
+                FunctionName=str(row[3]),
                 FileExtension=str(row[4]),
                 FileMIMEType=str(row[5])
             )
@@ -360,8 +360,8 @@ def get_all_api() -> List[api]:
             api(
                 APIGUID=str(row[0]),
                 API=str(row[1]),
-                OwnerEmailAddress=str(row[2]), 
-                DateExpires=str(row[3]), 
+                OwnerEmailAddress=str(row[2]),
+                DateExpires=str(row[3]),
                 PermissionCreate=bool(row[4]),
                 PermissionGlobalAdmin=bool(row[5]),
                 IsDisabled=bool(row[6]),
@@ -467,7 +467,7 @@ def create_sr(sr: sr) -> sr:
     did = uuid.uuid4()
     sr.OutputFormatGuid = did
     cur.execute(INSERT_SEARCH, (
-        sr.SearchGUID, 
+        sr.SearchGUID,
         sr.Name,
         sr.Description
         )
