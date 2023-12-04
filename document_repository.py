@@ -361,8 +361,9 @@ def get_all_api() -> List[api]:
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_ALL_API)
-    dump(cur)
+
     for row in cur:
+        dump(row)
         api_list.append(
             api(
                 APIGUID=str(row[0]),
