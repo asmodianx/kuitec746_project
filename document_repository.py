@@ -364,7 +364,6 @@ def get_all_api() -> List[api]:
     cur.execute(SELECT_ALL_API)
 
     for row in cur:
-
         api_list.append(
             api(
                 APIGUID=str(row[0]),
@@ -377,6 +376,7 @@ def get_all_api() -> List[api]:
                 IsDeleted=str(row[7])
                 )
         )
+        print(api_list)  
     return api_list    
 def get_api(did: str) -> List[api]:
     api_list = []
