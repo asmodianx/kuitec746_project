@@ -59,7 +59,7 @@ def api_get_ifm(did: str) -> ifm:
     return ifm
 
 @app.get("/ofm/{did}")
-def api_get_ofm(FileMetaDataGUID: str) -> Format:
+def api_get_ofm(FileMetaDataGUID: str) -> ofm:
     did = uuid.UUID(did)
     ofm = get_ofm(did)
     return ofm
