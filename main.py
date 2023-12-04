@@ -4,14 +4,17 @@ from fastapi import FastAPI, HTTPException
 from typing import List
 
 from document_model import df, dmd, ifm, ofm, api, sr
-from document_repository import (get_all_df, get_all_dmd, get_df, get_dmd, create_df, create_dmd, update_df, update_dmd,
-                                 delete_df, delete_dmd, purge_dmd, get_all_ifm, get_ifm, create_ifm, update_ifm,
-                                 delete_ifm, get_all_ofm, get_ofm, create_ofm, update_ofm, delete_ofm, get_all_api,
-                                 get_api, create_api, update_api, delete_api, purge_api, get_all_sr, get_sr, create_sr,
-                                 update_sr, delete_sr)
+from document_repository import (get_all_df, get_all_dmd, get_df, get_dmd, create_df, 
+    create_dmd, update_df, update_dmd, delete_df, delete_dmd, purge_dmd, get_all_ifm, 
+    get_ifm, create_ifm, update_ifm, delete_ifm, get_all_ofm, get_ofm, create_ofm, 
+    update_ofm, delete_ofm, get_all_api, get_api, create_api, update_api, delete_api, 
+    purge_api, get_all_sr, get_sr, create_sr,update_sr, delete_sr)
+
 app = FastAPI()
 
-#TODO: df and dmd - the insert statements for DMD needs to check to see if the file guid and ifm guid exists before inserting
+#TODO: df and dmd - the insert statements for DMD needs to check to see if the 
+#file guid and ifm guid exists before inserting
+
 #todo: create sql to return GUID exists for all tables then run it for updates inserts
 
 # === get all record 
@@ -42,7 +45,7 @@ def api_get_all_sr() -> List[sr]:
 # === get one record
 @app.get("/df/{did}")
 def api_get_df(did: str) -> df:
-    did = uuid.UUID(FileMetaDataGUID)
+    did = uuid.UUID(did)
     df = get_df(did)
     return df
 
