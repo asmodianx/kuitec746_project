@@ -33,7 +33,7 @@ def api_get_all_ifm() -> List[ifm]:
 
 @app.get("/ofm")
 def api_get_all_ofm() -> List[ofm]:
-    return get_all_ifm()
+    return get_all_ofm()
 
 @app.get("/api")
 def api_get_all_api() -> List[api]:
@@ -73,12 +73,12 @@ def api_get_ofm(did: str) -> ofm:
 @app.get("/api/{did}")
 def api_get_api(did: str) -> api:
     did = uuid.UUID(did)
-    api = get_ofm(api)
+    api = get_api(api)
     return api
 @app.get("/sr/{did}")
 def api_get_sr(did: str) -> sr:
     did = uuid.UUID(did)
-    sr = get_ofm(sr)
+    sr = get_sr(sr)
     return sr
 
 #=== create record
@@ -130,7 +130,7 @@ def api_update_ifm(did: str,  ifm:ifm) -> ifm:
 def api_update_ofm(did: str,  ofm:ofm) -> ofm:
     if did != ofm.fileGuid:
         raise HTTPException(status_code=400, detail="path id and object id must match")
-    return update_df(did, df)
+    return update_ofm(did, df)
 
 @app.put("/api/{did}")
 def api_update_df(did: str,  api:api) -> api:
