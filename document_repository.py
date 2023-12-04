@@ -367,14 +367,14 @@ def get_all_api() -> List[api]:
         print(row)
         api_list.append(
             api(
-                APIGUID=uuid.UUID(row[0]),
+                APIGUID=row[0],
                 API=str(row[1]),
-                OwnerEmailAddress=str(row[2]),
-                DateExpires=str(row[3]),
-                PermissionCreate=bool(row[4]),
-                PermissionGlobalAdmin=bool(row[5]),
-                IsDisabled=bool(row[6]),
-                IsDeleted=bool(row[7])
+                OwnerEmailAddress=row[2],
+                DateExpires=row[3],
+                PermissionCreate=row[4],
+                PermissionGlobalAdmin=row[5],
+                IsDisabled=row[6],
+                IsDeleted=row[7]
                 )
         )
     return api_list    
