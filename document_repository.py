@@ -175,7 +175,7 @@ def create_dmd(dmd: dmd) -> dmd:
     db.connection.commit()
     return get_dmd(did)
 
-def update_df(did, df: df) -> df:
+def update_df(df: df) -> df:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.UUID(df.fileGuid)
@@ -183,7 +183,7 @@ def update_df(did, df: df) -> df:
     db.connection.commit()
     return get_df(did)
 
-def update_dmd(did, dmd: dmd) -> dmd:
+def update_dmd(dmd: dmd) -> dmd:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.UUID(dmd.FileMetaDataGUID)
@@ -264,7 +264,7 @@ def create_ifm(ifm: ifm) -> ifm:
     db.connection.commit()
     return get_ifm(did)
 
-def update_ifm(did, ifm: ifm) -> ifm:
+def update_ifm(ifm: ifm) -> ifm:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.UUID(ifm.InputFormatGuid)
@@ -333,7 +333,7 @@ def create_ofm(ofm: ofm) -> ofm:
     db.connection.commit()
     return get_ofm(did)
 
-def update_ofm(did, ofm: ofm) -> ofm:
+def update_ofm(ofm: ofm) -> ofm:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.UUID(ofm.OutputFormatGuid)
@@ -408,7 +408,7 @@ def create_api(api: api) -> api:
     db.connection.commit()
     return get_api(did)
 
-def update_api(did, api: api) -> api:
+def update_api(api: api) -> api:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.UUID(api.OutputFormatGuid)
@@ -475,7 +475,7 @@ def create_sr(sr: sr) -> sr:
     db.connection.commit()
     return get_sr(did)
 
-def update_sr(did, sr: sr) -> sr:
+def update_sr(sr: sr) -> sr:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.UUID(sr.OutputFormatGuid)
