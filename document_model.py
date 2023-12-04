@@ -1,5 +1,5 @@
-from fastapi_camelcase import CamelModel
 from typing import Optional
+from fastapi_camelcase import CamelModel
 
 class dmd(CamelModel):
     APIGUID: Optional[str] = None
