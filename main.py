@@ -20,7 +20,6 @@ app = FastAPI()
 
 #fixme: im getting in nulls for some of the fields
 
-#LINT ERROR:  main.py:159:0: C0116: Missing function or method docstring (missing-function-docstring)
 
 # === get all record
 @app.get("/df")
@@ -48,40 +47,38 @@ def api_get_all_sr() -> List[sr]:
     return get_all_sr()
 
 # === get one record
-# LINT ERROR main.py:46:4: W0621: Redefining name 'df' from outer scope (line 6) (redefined-outer-name)
-@app.get("/df/{did}")
-def api_get_df(did: str) -> df:
-    did = uuid.UUID(did)
+@app.get("/df/{did1}")
+def api_get_df(did1: str) -> df:
+    did = uuid.UUID(did1)
     df_result = get_df(did)
     return df_result
 
-@app.get("/dmd/{did}")
-def api_get_dmd(did: str) -> dmd:
-    did = uuid.UUID(did)
+@app.get("/dmd/{did1}")
+def api_get_dmd(did1: str) -> dmd:
+    did = uuid.UUID(did1)
     dmd_result = get_dmd(did)
     return dmd_result
 
-#LINT main.py:63:20: E0601: Using variable 'did' before assignment (used-before-assignment)
-@app.get("/ifm/{did}")
-def api_get_ifm(did: str) -> ifm:
-    did = uuid.UUID(did)
+@app.get("/ifm/{did1}")
+def api_get_ifm(did1: str) -> ifm:
+    did = uuid.UUID(did1)
     ifm_result = get_ifm(did)
     return ifm_result
 
-@app.get("/ofm/{did}")
-def api_get_ofm(did: str) -> ofm:
-    did = uuid.UUID(did)
+@app.get("/ofm/{did1}")
+def api_get_ofm(did1: str) -> ofm:
+    did = uuid.UUID(did1)
     ofm_result = get_ofm(did)
     return ofm_result
 
-@app.get("/api/{did}")
-def api_get_api(did: str) -> api:
-    did = uuid.UUID(did)
+@app.get("/api/{did1}")
+def api_get_api(did1: str) -> api:
+    did = uuid.UUID(did1)
     api_result = get_api(did)
     return api_result
-@app.get("/sr/{did}")
-def api_get_sr(did: str) -> sr:
-    did = uuid.UUID(did)
+@app.get("/sr/{did1}")
+def api_get_sr(did1: str) -> sr:
+    did = uuid.UUID(did1)
     sr_result = get_sr(did)
     return sr_result
 
@@ -150,32 +147,32 @@ def api_update_sr(did: str,  sr_put:sr) -> sr:
 
 # delete record
 
-@app.delete("/df/{did}")
-def api_delete_df(did: str):
-    did = uuid.UUID(did)
+@app.delete("/df/{did1}")
+def api_delete_df(did1: str):
+    did = uuid.UUID(did1)
     delete_df(did)
 
-@app.delete("/dmd/{did}")
-def api_delete_dmd(did: str):
-    did = uuid.UUID(did)
+@app.delete("/dmd/{did1}")
+def api_delete_dmd(did1: str):
+    did = uuid.UUID(did1)
     delete_dmd(did)
 
-@app.delete("/ifm/{did}")
-def api_delete_ifm(did: str):
-    did = uuid.UUID(did)
+@app.delete("/ifm/{did1}")
+def api_delete_ifm(did1: str):
+    did = uuid.UUID(did1)
     delete_ifm(did)
 
-@app.delete("/ofm/{did}")
-def api_delete_ofm(did: str):
-    did = uuid.UUID(did)
+@app.delete("/ofm/{did1}")
+def api_delete_ofm(did1: str):
+    did = uuid.UUID(did1)
     delete_ofm(did)
 
-@app.delete("/api/{did}")
-def api_delete_api(did: str):
-    did = uuid.UUID(did)
+@app.delete("/api/{did1}")
+def api_delete_api(did1: str):
+    did = uuid.UUID(did1)
     delete_api(did)
 
-@app.delete("/sr/{did}")
-def api_delete_sr(did: str):
-    did = uuid.UUID(did)
+@app.delete("/sr/{did1}")
+def api_delete_sr(did1: str):
+    did = uuid.UUID(did1)
     delete_sr(did)
