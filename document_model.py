@@ -21,7 +21,7 @@ class df(CamelModel):
     fileContents: Optional[str] = None
 
 class api(CamelModel):
-    APIDGUID: Optional[str] = None
+    APIGUID: Optional[str] = None
     API: Optional[str] = None
     OwnerEmailAddress: Optional[str] = None
     DateExpires: Optional[str] = None
