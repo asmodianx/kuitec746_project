@@ -43,6 +43,7 @@ def api_get_all_sr() -> List[sr]:
     return get_all_sr()
 
 # === get one record
+# LINT ERROR main.py:46:4: W0621: Redefining name 'df' from outer scope (line 6) (redefined-outer-name)
 @app.get("/df/{did}")
 def api_get_df(did: str) -> df:
     did = uuid.UUID(did)
@@ -55,6 +56,7 @@ def api_get_dmd(did: str) -> dmd:
     dmd = get_dmd(did)
     return dmd
 
+#LINT main.py:63:20: E0601: Using variable 'did' before assignment (used-before-assignment)
 @app.get("/ifm/{did}")
 def api_get_ifm(did: str) -> ifm:
     did = uuid.UUID(did)
@@ -62,7 +64,7 @@ def api_get_ifm(did: str) -> ifm:
     return ifm
 
 @app.get("/ofm/{did}")
-def api_get_ofm(FileMetaDataGUID: str) -> ofm:
+def api_get_ofm(did: str) -> ofm:
     did = uuid.UUID(did)
     ofm = get_ofm(did)
     return ofm
