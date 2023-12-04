@@ -20,7 +20,7 @@ class EnvConfig:
             cls.DB_PORT = EnvConfig.get_env_variable('DB_PORT')
             cls.SCHEMA = EnvConfig.get_env_variable('SCHEMA')
         return cls._instance
-
+#config.py:24:4: E0213: Method 'get_env_variable' should have "self" as first argument (no-self-argument)
     def get_env_variable(name: str) -> str:
         try:
             return os.environ[name]
