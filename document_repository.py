@@ -152,11 +152,11 @@ def create_df(df: df) -> df:
     return get_df(did)
 
 def create_dmd(dmd: dmd) -> dmd:
-   db = DBConnection()
-   cur = db.get_cursor()
-   did = uuid.uuid4()
-   dmd.FileMetaDataGUID = did
-   cur.execute(INSERT_MD, (
+    db = DBConnection()
+    cur = db.get_cursor()
+    did = uuid.uuid4()
+    dmd.FileMetaDataGUID = did
+    cur.execute(INSERT_MD, (
         dmd.APIGUID, 
         dmd.FileMetaDataGUID, 
         dmd.Name, 
@@ -171,9 +171,9 @@ def create_dmd(dmd: dmd) -> dmd:
         dmd.FileHash, 
         dmd.FileCacheExpiration  
        )
-   )
-   db.connection.commit()
-   return get_dmd(did)
+    )
+    db.connection.commit()
+    return get_dmd(did)
 
 def update_df(did, df: df) -> df:
     db = DBConnection()
