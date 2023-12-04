@@ -1,7 +1,7 @@
 from typing import Optional
-from fastapi_camelcase import CamelModel
-
-class dmd(CamelModel):
+#from fastapi_camelcase import CamelModel
+#CamelModel
+class dmd():
     APIGUID: Optional[str] = None
     FileMetaDataGUID: Optional[str] = None
     Name: Optional[str] = None
@@ -16,11 +16,11 @@ class dmd(CamelModel):
     FileHash: Optional[str] = None
     FileCacheExpiration: Optional[str] = None
 
-class df(CamelModel):
+class df():
     fileGuid: Optional[str] = None
     fileContents: Optional[str] = None
 
-class api(CamelModel):
+class api():
     APIGUID: Optional[str] = None
     API: Optional[str] = None
     OwnerEmailAddress: Optional[str] = None
@@ -30,14 +30,14 @@ class api(CamelModel):
     IsDisabled: Optional[bool] = None
     IsDeleted: Optional[bool] = None
 
-class ifm(CamelModel):
+class ifm():
     InputFormatGuid: Optional[str] = None
     Name: Optional[str] = None
     Description: Optional[str] = None
     FileExtension: Optional[str] = None
     FileMIMEType: Optional[str] = None
 
-class ofm(CamelModel):
+class ofm():
     OutputFormatGuid: Optional[str] = None
     Name: Optional[str] = None
     Description: Optional[str] = None
@@ -45,7 +45,7 @@ class ofm(CamelModel):
     FileExtension: Optional[str] = None
     FileMIMEType: Optional[str] = None
 
-class sr(CamelModel):
+class sr():
     SearchGuid: Optional[str] = None
     Name: Optional[str] = None
     Description: Optional[str] = None
