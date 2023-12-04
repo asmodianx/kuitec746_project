@@ -367,7 +367,7 @@ def get_all_api() -> List[api]:
         print(row)
         api_list.append(
             api(
-                APIGUID=uuid(row[0]),
+                APIGUID=uuid.UUID(row[0]),
                 API=str(row[1]),
                 OwnerEmailAddress=str(row[2]),
                 DateExpires=str(row[3]),
