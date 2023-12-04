@@ -9,8 +9,6 @@ from db_connection import DBConnection
 #INSERT_FMD = 'INSERT INTO kershner."FileMetadata"("APIGUID", "FileMetaDataGUID", "Name", "Description", "DateUploaded", "DateModified", "Revision", "IsCurrent", "IsDeleted", "FileGuid", "InputFormatGuid", "FileHash", "FileCacheExpiration") SELECT %s as "APIGUID", %s as "FileMetaDataGUID", %s as "Name", %s as "Description", CURRENT_DATE as "DateUploaded", CURRENT_DATE as "DateModified", '1' as "Revision", true as "IsCurrent", false as "IsDeleted", "fileGuid" as "fileGuid", %s as "InputFormatGuid", md5("fileContents")::text as fileHash, %s as "FileCacheExpiration" FROM kershner."InputFile" WHERE "fileGuid" = %s;'
 #INSERT_FILE = 'INSERT INTO kershner."InputFile"("fileGuid", "fileContents") values(%s,%s);'
 #GET_FILE_BY_ID = 'select A."API",A."OwnerEmailAddress",B."FileMetaDataGUID",B."Name",B."Description",B."DateModified",B."DateUploaded",B."Revision",B."Name",B."IsCurrent",D."FileMIMEType",D."FileExtension",C."fileContents" from "kershner"."API" A,"kershner"."FileMetadata" B,"kershner"."InputFile" C,"kershner"."InputFileFormat" D WHERE A."APIGUID" = %s AND B."FileMetaDataGUID" = %s A."APIGUID" = B."APIGUID" AND B."FileGuid" = C."fileGuid" AND B."InputFormatGuid" = D."InputFormatGuid" AND A."IsDeleted" = false AND A."IsDisabled" = false AND A."DateExpires"::date > current_date AND B."IsCurrent" = true AND B."IsDeleted" = false;'
-#UPDATE_FILE= "UPDATE users set first_name = %s, last_name=%s WHERE user_id = %s"
-#DELETE_FILE = "DELETE FROM users where user_id=%s"
 
 # Document file DF
 SELECT_ALL_FILES = 'SELECT "fileGuid", "fileContents" FROM "kershner"."InputFile";'
