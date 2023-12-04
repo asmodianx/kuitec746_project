@@ -54,6 +54,12 @@ INSERT_SEARCH = 'INSERT INTO "kershner"."Search" "SearchGUID", "Name", "Descript
 UPDATE_SEARCH = 'UPDATE "SearchGUID", "Name", "Description" FROM "kershner"."Search";'
 DELETE_SEARCH = 'DELETE * FROM "kershner"."Search" WHERE "SearchGUID" = %s;'
 
+# debug
+def dump(obj):
+  for attr in dir(obj):
+    print("obj.%s = %r" % (attr, getattr(obj, attr)))
+
+
 #fixme: ubdates get two dids, by default it uses the one imbedded in the data object but for some reason im pulling the did in seperatly... 
 
 def get_all_df() -> List[df]:
@@ -355,6 +361,7 @@ def get_all_api() -> List[api]:
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_ALL_API)
+    dump(cur)
     for row in cur:
         api_list.append(
             api(
