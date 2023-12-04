@@ -364,17 +364,17 @@ def get_all_api() -> List[api]:
     cur.execute(SELECT_ALL_API)
 
     for row in cur:
-        print(repr(str(row[0])))
+
         api_list.append(
             api(
-                APIGUID=row[0],
+                APIGUID=str(row[0]),
                 API=str(row[1]),
-                OwnerEmailAddress=row[2],
-                DateExpires=row[3],
-                PermissionCreate=row[4],
-                PermissionGlobalAdmin=row[5],
-                IsDisabled=row[6],
-                IsDeleted=row[7]
+                OwnerEmailAddress=str(row[2]),
+                DateExpires=str(row[3]),
+                PermissionCreate=str(row[4]),
+                PermissionGlobalAdmin=str(row[5]),
+                IsDisabled=str(row[6]),
+                IsDeleted=str(row[7])
                 )
         )
     return api_list    
