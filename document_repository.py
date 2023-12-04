@@ -389,30 +389,30 @@ def get_api(did: uuid) -> List[api]:
         )
     return api_list
 
-def create_api(api: api) -> api:
+def create_api(api_create: api) -> api:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.uuid4()
-    api.OutputFormatGuid = did
+    api_create.OutputFormatGuid = did
     cur.execute(INSERT_API, (
     api.APIGUID, 
-        api.API,
-        api.OwnerEmailAddress,
-        api.DateExpires,
-        api.PermissionCreate,
-        api.PermissionGlobalAdmin,
-        api.IsDisabled,
-        api.IsDeleted
+        api_create.API,
+        api_create.OwnerEmailAddress,
+        api_create.DateExpires,
+        api_create.PermissionCreate,
+        api_create.PermissionGlobalAdmin,
+        api_create.IsDisabled,
+        api_create.IsDeleted
         )
     )
     db.connection.commit()
     return get_api(did)
 
-def update_api(api: api) -> api:
+def update_api(api_update: api) -> api:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.UUID(api.OutputFormatGuid)
-    cur.execute(UPDATE_API, (did, api.API, api.OwnerEmailAddress, api.DateExpires, api.PermissionCreate, api.PermissionGlobalAdmin, api.IsDisabled, api.IsDeleted))
+    did = uuid.UUID(api_update.OutputFormatGuid)
+    cur.execute(UPDATE_API, (did, api_update.API, api_update.OwnerEmailAddress, api_update.DateExpires, api_update.PermissionCreate, api_update.PermissionGlobalAdmin, api_update.IsDisabled, api_update.IsDeleted))
     db.connection.commit()
     return get_api(did)
 
@@ -461,25 +461,25 @@ def get_sr(did: uuid) -> List[sr]:
         )
     return sr_list
 
-def create_sr(sr: sr) -> sr:
+def create_sr(sr_create: sr) -> sr:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.uuid4()
-    sr.OutputFormatGuid = did
+    sr_create.OutputFormatGuid = did
     cur.execute(INSERT_SEARCH, (
-        sr.SearchGUID,
-        sr.Name,
-        sr.Description
+        sr_create.SearchGUID,
+        sr_create.Name,
+        sr_create.Description
         )
     )
     db.connection.commit()
     return get_sr(did)
 
-def update_sr(sr: sr) -> sr:
+def update_sr(sr_update: sr) -> sr:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.UUID(sr.OutputFormatGuid)
-    cur.execute(UPDATE_SEARCH, (did, sr.Name, sr.Description))
+    did = uuid.UUID(sr_update.OutputFormatGuid)
+    cur.execute(UPDATE_SEARCH, (did, sr_update.Name, sr_update.Description))
     db.connection.commit()
     return get_sr(did)
 
