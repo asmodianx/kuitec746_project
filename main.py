@@ -135,7 +135,7 @@ def api_update_ofm(did: str,  ofm:ofm) -> ofm:
     return update_ofm(did, df)
 
 @app.put("/api/{did}")
-def api_update_df(did: str,  api:api) -> api:
+def api_update_api(did: str,  api:api) -> api:
     if did != df.fileGuid:
         raise HTTPException(status_code=400, detail="path id and object id must match")
     return update_api(did, api)
