@@ -43,13 +43,13 @@ def api_get_all_sr() -> List[sr]:
 @app.get("/df/{did}")
 def api_get_df(did: str) -> df:
     did = uuid.UUID(FileMetaDataGUID)
-    df = get_user(did)
+    df = get_df(did)
     return df
 
 @app.get("/dmd/{did}")
 def api_get_dmd(did: str) -> dmd:
     did = uuid.UUID(did)
-    dmd = get_user(did)
+    dmd = get_dmd(did)
     return dmd
 
 @app.get("/ifm/{did}")
@@ -78,7 +78,7 @@ def api_get_sr(did: str) -> sr:
 #=== create record
 @app.post("/df")
 def api_create_df(df: df) -> List[df]:
-    return create_df(user)
+    return create_df(df)
 
 @app.post("/dmd")
 def api_create_dmd(dmd: dmd) -> List[dmd]:
@@ -143,29 +143,29 @@ def api_update_sr(did: str,  sr:sr) -> sr:
 @app.delete("/df/{did}")
 def api_delete_df(did: str):
     did = uuid.UUID(did)
-    delete_user(did)
+    delete_df(did)
 
 @app.delete("/dmd/{did}")
 def api_delete_dmd(did: str):
     did = uuid.UUID(did)
-    delete_user(did)
+    delete_dmd(did)
 
 @app.delete("/ifm/{did}")
 def api_delete_ifm(did: str):
     did = uuid.UUID(did)
-    delete_user(did)
+    delete_ifm(did)
 
 @app.delete("/ofm/{did}")
 def api_delete_ofm(did: str):
     did = uuid.UUID(did)
-    delete_user(did)
+    delete_ofm(did)
 
 @app.delete("/api/{did}")
 def api_delete_api(did: str):
     did = uuid.UUID(did)
-    delete_user(did)
+    delete_api(did)
 
 @app.delete("/sr/{did}")
 def api_delete_sr(did: str):
     did = uuid.UUID(did)
-    delete_user(did)
+    delete_sr(did)
