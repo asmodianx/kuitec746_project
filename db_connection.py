@@ -22,7 +22,6 @@ class DBConnection:
                 port=config.DB_PORT,
                 options="-c search_path="+config.SCHEMA)
                 print('Database connection opened.')
-                print(dbname)
             except psycopg2.DatabaseError as db_error:
                 print("Error: \n{0}".format(db_error))
         return cls._instance
