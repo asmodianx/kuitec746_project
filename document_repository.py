@@ -97,7 +97,7 @@ def get_all_dmd() -> List[dmd]:
         )
     return dmd_list
 
-def get_df(did: uuid) -> List[df]:
+def get_df(did: str) -> List[df]:
     df_list = []
     db = DBConnection()
     cur = db.get_cursor()
@@ -112,7 +112,7 @@ def get_df(did: uuid) -> List[df]:
         )
     return df_list
 
-def get_dmd(did: uuid) -> List[dmd]:
+def get_dmd(did: str) -> List[dmd]:
     dmd_list = []
     db = DBConnection()
     cur = db.get_cursor()
@@ -191,21 +191,21 @@ def update_dmd(dmd_update: dmd) -> dmd:
     db.connection.commit()
     return get_dmd(str(did))
 
-def delete_df(did: uuid):
+def delete_df(did):
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(DELETE_FILE, (str(did)))
     db.connection.commit()
     return
     
-def delete_dmd(did: uuid):
+def delete_dmd(did: str):
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(DELETE_MD, (str(did)))
     db.connection.commit()
     return
 
-def purge_dmd(did: uuid):
+def purge_dmd(did: str):
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(PURGE_MD, (str(did)))
@@ -231,7 +231,7 @@ def get_all_ifm() -> List[ifm]:
         )
     return ifm_list
 
-def get_ifm(did: uuid) -> List[ifm]:
+def get_ifm(did: str) -> List[ifm]:
     ifm_list = []
     db = DBConnection()
     cur = db.get_cursor()
@@ -272,7 +272,7 @@ def update_ifm(ifm_update: ifm) -> ifm:
     db.connection.commit()
     return get_ifm(str(did))
 
-def delete_ifm(did: uuid):
+def delete_ifm(did: str):
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(DELETE_IF, (str(did)))
@@ -299,7 +299,7 @@ def get_all_ofm() -> List[ofm]:
             )
         )
     return ofm_list
-def get_ofm(did: uuid) -> List[ofm]:
+def get_ofm(did: str) -> List[ofm]:
     ofm_list = []
     db = DBConnection()
     cur = db.get_cursor()
@@ -341,7 +341,7 @@ def update_ofm(ofm_update: ofm) -> ofm:
     db.connection.commit()
     return get_ofm(str(did))
 
-def delete_ofm(did: uuid):
+def delete_ofm(did: str):
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(DELETE_OF, (str(did)))
@@ -369,7 +369,7 @@ def get_all_api() -> List[api]:
                 )
         )
     return api_list    
-def get_api(did: uuid) -> List[api]:
+def get_api(did: str) -> List[api]:
     api_list = []
     db = DBConnection()
     cur = db.get_cursor()
@@ -416,14 +416,14 @@ def update_api(api_update: api) -> api:
     db.connection.commit()
     return get_api(str(did))
 
-def delete_api(did: uuid):
+def delete_api(did: str):
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(DELETE_API, (str(did)))
     db.connection.commit()
     return    
 
-def purge_api(did: uuid):
+def purge_api(did: str):
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(PURGE_API, (str(did)))
@@ -446,7 +446,7 @@ def get_all_sr() -> List[sr]:
             )
         )
     return sr_list
-def get_sr(did: uuid) -> List[sr]:
+def get_sr(did: str) -> List[sr]:
     sr_list = []
     db = DBConnection()
     cur = db.get_cursor()
@@ -483,7 +483,7 @@ def update_sr(sr_update: sr) -> sr:
     db.connection.commit()
     return get_sr(str(did))
 
-def delete_sr(did: uuid):
+def delete_sr(did: str):
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(DELETE_SEARCH, (str(did)))
