@@ -23,7 +23,7 @@ class df(CamelModel):
 class api(CamelModel):
     APIDGUID: Optional[str] = None
     API: Optional[str] = None
-    OwnerEmailAddress: Optional[str]
+    OwnerEmailAddress: Optional[str] = None
     DateExpires: Optional[str] = None
     PermissionCreate: Optional[bool] = None
     PermissionGlobalAdmin: Optional[bool] = None
