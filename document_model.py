@@ -2,50 +2,50 @@ from typing import Optional
 from fastapi_camelcase import CamelModel
 
 class dmd(CamelModel):
-    APIGUID: Optional[str] = None
-    FileMetaDataGUID: Optional[str] = None
-    Name: Optional[str] = None
-    Description: Optional[str] = None
-    DateUploaded: Optional[str] = None
-    DateModified: Optional[str] = None
-    Revision: Optional[str] = None
-    IsCurrent: Optional[bool] = None
-    IsDeleted: Optional[bool] = None
-    FileGuid: Optional[str] = None
-    InputFormatGuid: Optional[str] = None
-    FileHash: Optional[str] = None
-    FileCacheExpiration: Optional[str] = None
+    apiGuid: Optional[str] = None
+    fileMetaDataGUID: Optional[str] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    dateUploaded: Optional[str] = None
+    dateModified: Optional[str] = None
+    revision: Optional[str] = None
+    isCurrent: Optional[bool] = None
+    isDeleted: Optional[bool] = None
+    fileGuid: Optional[str] = None
+    inputFormatGuid: Optional[str] = None
+    fileHash: Optional[str] = None
+    fileCacheExpiration: Optional[str] = None
 
 class df(CamelModel):
     fileGuid: Optional[str] = None
     fileContents: Optional[str] = None
 
 class api(CamelModel):
-    APIGUID: Optional[str] = None
-    API: Optional[str] = None
-    OwnerEmailAddress: Optional[str] = None
-    DateExpires: Optional[str] = None
-    PermissionCreate: Optional[bool] = None
-    PermissionGlobalAdmin: Optional[bool] = None
-    IsDisabled: Optional[bool] = None
-    IsDeleted: Optional[bool] = None
+    apiGuid: Optional[str] = None
+    api: Optional[str] = None
+    ownerEmailAddress: Optional[str] = None
+    dateExpires: Optional[str] = None
+    permissionCreate: Optional[bool] = None
+    permissionGlobalAdmin: Optional[bool] = None
+    isDisabled: Optional[bool] = None
+    isDeleted: Optional[bool] = None
 
 class ifm(CamelModel):
-    InputFormatGuid: Optional[str] = None
-    Name: Optional[str] = None
-    Description: Optional[str] = None
-    FileExtension: Optional[str] = None
-    FileMIMEType: Optional[str] = None
+    inputFormatGuid: Optional[str] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    fileExtension: Optional[str] = None
+    fileMIMEType: Optional[str] = None
 
 class ofm(CamelModel):
-    OutputFormatGuid: Optional[str] = None
-    Name: Optional[str] = None
-    Description: Optional[str] = None
-    FunctionName: Optional[str] = None
-    FileExtension: Optional[str] = None
-    FileMIMEType: Optional[str] = None
+    outputFormatGuid: Optional[str] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    functionName: Optional[str] = None
+    fileExtension: Optional[str] = None
+    fileMIMEType: Optional[str] = None
 
 class sr(CamelModel):
-    SearchGuid: Optional[str] = None
-    Name: Optional[str] = None
-    Description: Optional[str] = None
+    searchGuid: Optional[str] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
