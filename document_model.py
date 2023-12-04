@@ -22,7 +22,6 @@ class df(CamelModel):
 
 class api(CamelModel):
     APIDGUID: Optional[str] = None
-    FileMetaDataGUID: Optional[str] = None
     API: Optional[str] = None
     OwnerEmailAddress: Optional[str] = None
     DateExpires: Optional[str] = None
