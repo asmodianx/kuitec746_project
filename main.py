@@ -18,6 +18,8 @@ app = FastAPI()
 
 #todo: create sql to return GUID exists for all tables then run it for updates inserts
 
+#fixme: im getting in nulls for some of the fields
+
 #LINT ERROR:  main.py:159:0: C0116: Missing function or method docstring (missing-function-docstring)
 
 # === get all record
