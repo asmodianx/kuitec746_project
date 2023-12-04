@@ -54,7 +54,7 @@ INSERT_SEARCH = 'INSERT INTO "kershner"."Search" "SearchGUID", "Name", "Descript
 UPDATE_SEARCH = 'UPDATE "SearchGUID", "Name", "Description" FROM "kershner"."Search";'
 DELETE_SEARCH = 'DELETE * FROM "kershner"."Search" WHERE "SearchGUID" = %s;'
 
-
+#fixme: ubdates get two dids, by default it uses the one imbedded in the data object but for some reason im pulling the did in seperatly... 
 
 def get_all_df() -> List[df]:
     df_list = []
