@@ -356,6 +356,7 @@ def delete_ofm(did: str):
     
 #=== API
 #"APIGUID", "API", "OwnerEmailAddress", "DateExpires", "PermissionCreate", "PermissionGlobalAdmin", "IsDisabled", "IsDeleted"
+#(UUID('b7c4030e-942a-43c8-9274-64af9549877f'), 'TESTKEYTESTKEYTESTKEYTESTKEY', 'joel.kershner@gmail.com', datetime.datetime(2525, 12, 24, 0, 0), True, True, False, False)
 def get_all_api() -> List[api]:
     api_list = []
     db = DBConnection()
@@ -366,7 +367,7 @@ def get_all_api() -> List[api]:
         print(row)
         api_list.append(
             api(
-                APIGUID=str(row[0]),
+                APIGUID=uuid(row[0]),
                 API=str(row[1]),
                 OwnerEmailAddress=str(row[2]),
                 DateExpires=str(row[3]),
