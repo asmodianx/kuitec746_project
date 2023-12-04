@@ -235,7 +235,7 @@ def get_ifm(did: uuid) -> List[ifm]:
     ifm_list = []
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(SELECT_IF, did)
+    cur.execute(SELECT_IF, [did])
     for row in cur:
         ifm_list.append(
             ifm(
