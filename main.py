@@ -52,101 +52,101 @@ def api_get_all_sr() -> List[sr]:
 @app.get("/df/{did}")
 def api_get_df(did: str) -> df:
     did = uuid.UUID(did)
-    df = get_df(did)
-    return df
+    df_result = get_df(did)
+    return df_result
 
 @app.get("/dmd/{did}")
 def api_get_dmd(did: str) -> dmd:
     did = uuid.UUID(did)
-    dmd = get_dmd(did)
-    return dmd
+    dmd_result = get_dmd(did)
+    return dmd_result
 
 #LINT main.py:63:20: E0601: Using variable 'did' before assignment (used-before-assignment)
 @app.get("/ifm/{did}")
 def api_get_ifm(did: str) -> ifm:
     did = uuid.UUID(did)
-    ifm = get_ifm(did)
-    return ifm
+    ifm_result = get_ifm(did)
+    return ifm_result
 
 @app.get("/ofm/{did}")
 def api_get_ofm(did: str) -> ofm:
     did = uuid.UUID(did)
-    ofm = get_ofm(did)
-    return ofm
+    ofm_result = get_ofm(did)
+    return ofm_result
 
 @app.get("/api/{did}")
 def api_get_api(did: str) -> api:
     did = uuid.UUID(did)
-    api = get_api(api)
-    return api
+    api_result = get_api(did)
+    return api_result
 @app.get("/sr/{did}")
 def api_get_sr(did: str) -> sr:
     did = uuid.UUID(did)
-    sr = get_sr(sr)
-    return sr
+    sr_result = get_sr(did)
+    return sr_result
 
 #=== create record
 @app.post("/df")
-def api_create_df(df: df) -> List[df]:
-    return create_df(df)
+def api_create_df(df_post :df) -> List[df]:
+    return create_df(df_post)
 
 @app.post("/dmd")
-def api_create_dmd(dmd: dmd) -> List[dmd]:
-    return create_dmd()
+def api_create_dmd(dmd_post :dmd) -> List[dmd]:
+    return create_dmd(dmd_post)
 
 @app.post("/ifm")
-def api_create_ifm() -> List[ifm]:
-    return create_ifm()
+def api_create_ifm(ifm_post :ifm) -> List[ifm]:
+    return create_ifm(ifm_post)
 
 @app.post("/ofm")
-def api_create_ofm() -> List[ofm]:
-    return create_ofm()
+def api_create_ofm(ofm_post :ofm) -> List[ofm]:
+    return create_ofm(ofm_post)
 
 @app.post("/api")
-def api_create_api() -> List[api]:
-    return create_api()
+def api_create_api(api_post :api) -> List[api]:
+    return create_api(api_post)
 
 @app.post("/sr")
-def api_create_sr() -> List[sr]:
-    return create_sr()
+def api_create_sr(sr_post :sr) -> List[sr]:
+    return create_sr(sr_post)
 
 # update record
 
 @app.put("/df/{did}")
-def api_update_df(did: str,  df:df) -> df:
-    if did != df.fileGuid:
+def api_update_df(did: str,  df_put:df) -> df:
+    if did != df_put.fileGuid:
         raise HTTPException(status_code=400, detail="path id and object id must match")
-    return update_df(did, df)
+    return update_df(df_put)
 
 @app.put("/dmd/{did}")
-def api_update_dmd(did: str,  dmd:dmd) -> dmd:
-    if did != dmd.fileGuid:
+def api_update_dmd(did: str,  dmd_put:dmd) -> dmd:
+    if did != dmd_put.fileGuid:
         raise HTTPException(status_code=400, detail="path id and object id must match")
-    return update_dmd(did, dmd)
+    return update_dmd(dmd_put)
 
 @app.put("/ifm/{did}")
-def api_update_ifm(did: str,  ifm:ifm) -> ifm:
-    if did != ifm.fileGuid:
+def api_update_ifm(did: str,  ifm_put:ifm) -> ifm:
+    if did != ifm_put.fileGuid:
         raise HTTPException(status_code=400, detail="path id and object id must match")
-    return update_ifm(did, ifm)
+    return update_ifm(ifm_put)
 
 @app.put("/ofm/{did}")
-def api_update_ofm(did: str,  ofm:ofm) -> ofm:
-    if did != ofm.fileGuid:
+def api_update_ofm(did: str,  ofm_put:ofm) -> ofm:
+    if did != ofm_put.fileGuid:
         raise HTTPException(status_code=400, detail="path id and object id must match")
-    return update_ofm(did, df)
+    return update_ofm(df_put)
 
 @app.put("/api/{did}")
-def api_update_api(did: str,  api:api) -> api:
-    if did != df.fileGuid:
+def api_update_api(did: str,  api_put:api) -> api:
+    if did != df_put.fileGuid:
         raise HTTPException(status_code=400, detail="path id and object id must match")
-    return update_api(did, api)
+    return update_api(api_put)
 
 @app.put("/sr/{did}")
-def api_update_sr(did: str,  sr:sr) -> sr:
-    if did != df.fileGuid:
+def api_update_sr(did: str,  sr_put:sr) -> sr:
+    if did != df_put.fileGuid:
         raise HTTPException(status_code=400, detail="path id and object id must match")
-    return update_sr(did, sr)
+    return update_sr(sr_put)
 
 # delete record
 
