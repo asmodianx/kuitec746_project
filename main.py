@@ -78,7 +78,7 @@ def api_get_sr(did: str) -> sr:
 #=== create record
 @app.post("/df")
 def api_create_df(df: df) -> List[df]:
-    return create_user(user)
+    return create_df(user)
 
 @app.post("/dmd")
 def api_create_dmd(dmd: dmd) -> List[dmd]:
