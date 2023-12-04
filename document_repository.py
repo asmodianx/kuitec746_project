@@ -364,7 +364,7 @@ def get_all_api() -> List[api]:
     cur.execute(SELECT_ALL_API)
 
     for row in cur:
-        print(row)
+        print(row[0])
         api_list.append(
             api(
                 APIGUID=row[0],
