@@ -370,10 +370,10 @@ def get_all_api() -> List[api]:
                 API=str(row[1]),
                 OwnerEmailAddress=str(row[2]),
                 DateExpires=str(row[3]),
-                PermissionCreate=str(row[4]),
-                PermissionGlobalAdmin=str(row[5]),
-                IsDisabled=str(row[6]),
-                IsDeleted=str(row[7])
+                PermissionCreate=bool(row[4]),
+                PermissionGlobalAdmin=bool(row[5]),
+                IsDisabled=bool(row[6]),
+                IsDeleted=bool(row[7])
             )
         )
         print(api_list)  
