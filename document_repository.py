@@ -248,17 +248,17 @@ def get_ifm(did: uuid) -> List[ifm]:
         )
     return ifm_list
 
-def create_ifm(ifm: ifm) -> ifm:
+def create_ifm(ifm_create: ifm) -> ifm:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.uuid4()
-    ifm.InputFormatGuid = did
+    ifm_create.InputFormatGuid = did
     cur.execute(INSERT_IF, (
-    ifm.InputFormatGuid, 
-        ifm.Name,
-        ifm.Description,
-        ifm.FileExtension,
-        ifm.FileMIMEType
+        ifm_create.InputFormatGuid, 
+        ifm_create.Name,
+        ifm_create.Description,
+        ifm_create.FileExtension,
+        ifm_create.FileMIMEType
         )
     )
     db.connection.commit()
