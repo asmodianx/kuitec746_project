@@ -80,19 +80,19 @@ def get_all_dmd() -> List[dmd]:
     for row in cur:
         dmd_list.append(
             dmd(
-                APIGUID=str(row[0]),
-                FileMetaDataGUID=str(row[1]),
-                Name=str(row[2]),
-                Description=str(row[3]),
-                DateUploaded=str(row[4]),
-                DateModified=str(row[5]),
-                Revision=str(row[6]),
-                IsCurrent=bool(row[7]),
-                IsDeleted=bool(row[8]),
-                FileGuid=str(row[9]),
-                InputFormatGuid=str(row[10]),
-                FileHash=str(row[11]),
-                FileCacheExpiration=str(row[12])
+                apiGuid=str(row[0]),
+                fileMetaDataGUID=str(row[1]),
+                name=str(row[2]),
+                description=str(row[3]),
+                dateUploaded=str(row[4]),
+                dateModified=str(row[5]),
+                revision=str(row[6]),
+                isCurrent=bool(row[7]),
+                isDeleted=bool(row[8]),
+                fileGuid=str(row[9]),
+                inputFormatGuid=str(row[10]),
+                fileHash=str(row[11]),
+                fileCacheExpiration=str(row[12])
             )
         )
     return dmd_list
@@ -121,19 +121,19 @@ def get_dmd(did: str) -> List[dmd]:
     for row in cur:
         dmd_list.append(
             dmd(
-                APIGUID=str(row[0]),
-                FileMetaDataGUID=str(row[1]),
-                Name=str(row[2]),
-                Description=str(row[3]),
-                DateUploaded=str(row[4]),
-                DateModified=str(row[5]),
-                Revision=str(row[6]),
-                IsCurrent=bool(row[7]),
-                IsDeleted=bool(row[8]),
-                FileGuid=str(row[9]),
-                InputFormatGuid=str(row[10]),
-                FileHash=str(row[11]),
-                FileCacheExpiration=str(row[12])
+                apiGuid=str(row[0]),
+                fileMetaDataGUID=str(row[1]),
+                name=str(row[2]),
+                description=str(row[3]),
+                dateUploaded=str(row[4]),
+                dateModified=str(row[5]),
+                revision=str(row[6]),
+                isCurrent=bool(row[7]),
+                isDeleted=bool(row[8]),
+                fileGuid=str(row[9]),
+                inputFormatGuid=str(row[10]),
+                fileHash=str(row[11]),
+                fileCacheExpiration=str(row[12])
             )
         )
     return dmd_list
@@ -157,19 +157,19 @@ def create_dmd(dmd_create: dmd) -> dmd:
     did = uuid.uuid4()
     dmd_create.FileMetaDataGUID = did
     cur.execute(INSERT_MD, (
-        dmd_create.APIGUID,
-        dmd_create.FileMetaDataGUID,
-        dmd_create.Name,
-        dmd_create.Description,
-        dmd_create.DateUploaded,
-        dmd_create.DateModified,
-        dmd_create.Revision,
-        dmd_create.IsCurrent,
-        dmd_create.IsDeleted,
-        dmd_create.FileGuid,
-        dmd_create.InputFormatGuid,
-        dmd_create.FileHash,
-        dmd_create.FileCacheExpiration
+        dmd_create.apiGuid,
+        dmd_create.fileMetaDataGUID,
+        dmd_create.name,
+        dmd_create.description,
+        dmd_create.dateUploaded,
+        dmd_create.dateModified,
+        dmd_create.revision,
+        dmd_create.isCurrent,
+        dmd_create.isDeleted,
+        dmd_create.fileGuid,
+        dmd_create.inputFormatGuid,
+        dmd_create.fileHash,
+        dmd_create.fileCacheExpiration
        )
     )
     db.connection.commit()
@@ -186,7 +186,7 @@ def update_df(df_update: df) -> df:
 def update_dmd(dmd_update: dmd) -> dmd:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.UUID(dmd_update.FileMetaDataGUID)
+    did = uuid.UUID(dmd_update.fileMetaDataGUID)
     cur.execute(UPDATE_MD, (did, dmd_update.fileContents))
     db.connection.commit()
     return get_dmd(did)
@@ -222,11 +222,11 @@ def get_all_ifm() -> List[ifm]:
     for row in cur:
         ifm_list.append(
             ifm(
-                InputFormatGuid=str(row[0]),
-                Name=str(row[1]),
-                Description=str(row[2]),
-                FileExtension=str(row[3]),
-                FileMIMEType=str(row[4])
+                inputFormatGuid=str(row[0]),
+                name=str(row[1]),
+                description=str(row[2]),
+                fileExtension=str(row[3]),
+                fileMimeType=str(row[4])
             )
         )
     return ifm_list
@@ -239,11 +239,11 @@ def get_ifm(did: str) -> List[ifm]:
     for row in cur:
         ifm_list.append(
             ifm(
-                InputFormatGuid=str(row[0]),
-                Name=str(row[1]),
-                Description=str(row[2]),
-                FileExtension=str(row[3]),
-                FileMIMEType=str(row[4])
+                inputFormatGuid=str(row[0]),
+                name=str(row[1]),
+                description=str(row[2]),
+                fileExtension=str(row[3]),
+                fileMimeType=str(row[4])
                 )
         )
     return ifm_list
@@ -254,11 +254,11 @@ def create_ifm(ifm_create: ifm) -> ifm:
     did = uuid.uuid4()
     ifm_create.InputFormatGuid = did
     cur.execute(INSERT_IF, (
-        ifm_create.InputFormatGuid, 
-        ifm_create.Name,
-        ifm_create.Description,
-        ifm_create.FileExtension,
-        ifm_create.FileMIMEType
+        ifm_create.inputFormatGuid, 
+        ifm_create.name,
+        ifm_create.description,
+        ifm_create.fileExtension,
+        ifm_create.fileMimeType
         )
     )
     db.connection.commit()
@@ -268,7 +268,7 @@ def update_ifm(ifm_update: ifm) -> ifm:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.UUID(ifm_update.InputFormatGuid)
-    cur.execute(UPDATE_IF, (did, ifm_update.Name, ifm_update.Description, ifm_update.FileExtension, ifm_update.FileMIMEType))
+    cur.execute(UPDATE_IF, (did, ifm_update.name, ifm_update.description, ifm_update.fileExtension, ifm_update.fileMimeType))
     db.connection.commit()
     return get_ifm(did)
 
@@ -290,12 +290,12 @@ def get_all_ofm() -> List[ofm]:
     for row in cur:
         ofm_list.append(
             ofm(
-                OutputFormatGuid=str(row[0]),
-                Name=str(row[1]),
-                Description=str(row[2]), 
-                FunctionName=str(row[3]),
-                FileExtension=str(row[4]),
-                FileMIMEType=str(row[5])
+                outputFormatGuid=str(row[0]),
+                name=str(row[1]),
+                description=str(row[2]), 
+                functionName=str(row[3]),
+                fileExtension=str(row[4]),
+                fileMimeType=str(row[5])
             )
         )
     return ofm_list
@@ -307,12 +307,12 @@ def get_ofm(did: str) -> List[ofm]:
     for row in cur:
         ofm_list.append(
             ofm(
-                OutputFormatGuid=str(row[0]),
-                Name=str(row[1]),
-                Description=str(row[2]),
-                FunctionName=str(row[3]),
-                FileExtension=str(row[4]),
-                FileMIMEType=str(row[5])
+                outputFormatGuid=str(row[0]),
+                name=str(row[1]),
+                description=str(row[2]),
+                functionName=str(row[3]),
+                fileExtension=str(row[4]),
+                fileMimeType=str(row[5])
             )
         )
     return ofm_list
@@ -323,11 +323,11 @@ def create_ofm(ofm_create: ofm) -> ofm:
     did = uuid.uuid4()
     ofm_create.OutputFormatGuid = did
     cur.execute(INSERT_OF, (
-        ofm_create.OutputFormatGuid, 
-        ofm_create.Name,
-        ofm_create.FunctionName,
-        ofm_create.FileExtension,
-        ofm_create.FileMIMEType
+        ofm_create.outputFormatGuid, 
+        ofm_create.name,
+        ofm_create.functionName,
+        ofm_create.fileExtension,
+        ofm_create.fileMIMEType
         )
     )
     db.connection.commit()
@@ -336,8 +336,8 @@ def create_ofm(ofm_create: ofm) -> ofm:
 def update_ofm(ofm_update: ofm) -> ofm:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.UUID(ofm_update.OutputFormatGuid)
-    cur.execute(UPDATE_OF, (did, ofm_update.Name, ofm_update.FunctionName, ofm_update.FileExtension, ofm_update.FileMIMEType))
+    did = uuid.UUID(ofm_update.outputFormatGuid)
+    cur.execute(UPDATE_OF, (did, ofm_update.name, ofm_update.functionName, ofm_update.fileExtension, ofm_update.fileMimeType))
     db.connection.commit()
     return get_ofm(did)
 
@@ -381,14 +381,14 @@ def get_api(did: str) -> List[api]:
     for row in cur:
         api_list.append(
             api(
-                APIGUID=str(row[0]),
-                API=str(row[1]),
-                OwnerEmailAddress=str(row[2]), 
-                DateExpires=str(row[3]), 
-                PermissionCreate=bool(row[4]),
-                PermissionGlobalAdmin=bool(row[5]),
-                IsDisabled=bool(row[6]),
-                IsDeleted=bool(row[7])
+                apiGuid=str(row[0]),
+                api=str(row[1]),
+                ownerEmailAddress=str(row[2]), 
+                dateExpires=str(row[3]), 
+                permissionCreate=bool(row[4]),
+                permissionGlobalAdmin=bool(row[5]),
+                isDisabled=bool(row[6]),
+                isDeleted=bool(row[7])
             )
         )
     return api_list
@@ -397,16 +397,16 @@ def create_api(api_create: api) -> api:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.uuid4()
-    api_create.OutputFormatGuid = did
+    api_create.outputFormatGuid = did
     cur.execute(INSERT_API, (
     api.APIGUID, 
-        api_create.API,
-        api_create.OwnerEmailAddress,
-        api_create.DateExpires,
-        api_create.PermissionCreate,
-        api_create.PermissionGlobalAdmin,
-        api_create.IsDisabled,
-        api_create.IsDeleted
+        api_create.api,
+        api_create.ownerEmailAddress,
+        api_create.dateExpires,
+        api_create.permissionCreate,
+        api_create.permissionGlobalAdmin,
+        api_create.isDisabled,
+        api_create.isDeleted
         )
     )
     db.connection.commit()
@@ -416,7 +416,7 @@ def update_api(api_update: api) -> api:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.UUID(api_update.OutputFormatGuid)
-    cur.execute(UPDATE_API, (did, api_update.API, api_update.OwnerEmailAddress, api_update.DateExpires, api_update.PermissionCreate, api_update.PermissionGlobalAdmin, api_update.IsDisabled, api_update.IsDeleted))
+    cur.execute(UPDATE_API, (did, api_update.api, api_update.ownerEmailAddress, api_update.dateExpires, api_update.permissionCreate, api_update.permissionGlobalAdmin, api_update.isDisabled, api_update.isDeleted))
     db.connection.commit()
     return get_api(did)
 
@@ -444,9 +444,9 @@ def get_all_sr() -> List[sr]:
     for row in cur:
         sr_list.append(
             sr(
-                SearchGUID=str(row[0]),
-                Name=str(row[1]),
-                Description=str(row[2])
+                searchGuid=str(row[0]),
+                name=str(row[1]),
+                description=str(row[2])
             )
         )
     return sr_list
@@ -458,9 +458,9 @@ def get_sr(did: str) -> List[sr]:
     for row in cur:
         sr_list.append(
             sr(
-                SearchGUID=str(row[0]),
-                Name=str(row[1]),
-                Description=str(row[2])
+                searchGuid=str(row[0]),
+                name=str(row[1]),
+                description=str(row[2])
             )
         )
     return sr_list
@@ -471,9 +471,9 @@ def create_sr(sr_create: sr) -> sr:
     did = uuid.uuid4()
     sr_create.OutputFormatGuid = did
     cur.execute(INSERT_SEARCH, (
-        sr_create.SearchGUID,
-        sr_create.Name,
-        sr_create.Description
+        sr_create.searchGuid,
+        sr_create.name,
+        sr_create.description
         )
     )
     db.connection.commit()
@@ -483,7 +483,7 @@ def update_sr(sr_update: sr) -> sr:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.UUID(sr_update.OutputFormatGuid)
-    cur.execute(UPDATE_SEARCH, (did, sr_update.Name, sr_update.Description))
+    cur.execute(UPDATE_SEARCH, (did, sr_update.name, sr_update.description))
     db.connection.commit()
     return get_sr(did)
 
