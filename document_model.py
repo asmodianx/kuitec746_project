@@ -35,7 +35,7 @@ class ifm(CamelModel):
     name: Optional[str] = None
     description: Optional[str] = None
     fileExtension: Optional[str] = None
-    fileMIMEType: Optional[str] = None
+    fileMimeType: Optional[str] = None
 
 class ofm(CamelModel):
     outputFormatGuid: Optional[str] = None
@@ -43,7 +43,7 @@ class ofm(CamelModel):
     description: Optional[str] = None
     functionName: Optional[str] = None
     fileExtension: Optional[str] = None
-    fileMIMEType: Optional[str] = None
+    fileMimeType: Optional[str] = None
 
 class sr(CamelModel):
     searchGuid: Optional[str] = None
