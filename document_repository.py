@@ -326,7 +326,7 @@ def create_ofm(ofm_create: ofm) -> ofm:
         ofm_create.name,
         ofm_create.functionName,
         ofm_create.fileExtension,
-        ofm_create.fileMIMEType
+        ofm_create.fileMimeType
         )
     )
     db.connection.commit()
