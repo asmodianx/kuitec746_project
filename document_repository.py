@@ -320,8 +320,7 @@ def get_ofm(did: str) -> List[ofm]:
 def create_ofm(ofm_create: ofm) -> ofm:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.uuid4()
-    ofm_create.outputFormatGuid = did
+    ofm_create.outputFormatGuid = uuid.uuid4()
     cur.execute(INSERT_OF, (
         ofm_create.outputFormatGuid, 
         ofm_create.name,
