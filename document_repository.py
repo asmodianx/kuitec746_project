@@ -324,7 +324,7 @@ def create_ofm(ofm_create: ofm) -> ofm:
     db = DBConnection()
     cur = db.get_cursor()
     ofm_create.outputFormatGuid = uuid.uuid4()
-    cur.execute(INSERT_OF, ( ofm_create.outputFormatGuid, ofm_create.name, ofm_create.functionName, ofm_create.fileExtension, ofm_create.fileMimeType ))
+    cur.execute(INSERT_OF ( ofm_create.outputFormatGuid, ofm_create.name, ofm_create.functionName, ofm_create.fileExtension, ofm_create.fileMimeType ))
     db.connection.commit()
     return get_ofm(did)
 
