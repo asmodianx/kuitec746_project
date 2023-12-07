@@ -155,7 +155,7 @@ def create_dmd(dmd_create: dmd) -> dmd:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.uuid4()
-    dmd_create.FileMetaDataGUID = did
+    dmd_create.fileMetaDataGUID = did
     cur.execute(INSERT_MD, (
         dmd_create.apiGuid,
         dmd_create.fileMetaDataGUID,
@@ -252,7 +252,7 @@ def create_ifm(ifm_create: ifm) -> ifm:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.uuid4()
-    ifm_create.InputFormatGuid = did
+    ifm_create.inputFormatGuid = did
     cur.execute(INSERT_IF, (
         ifm_create.inputFormatGuid, 
         ifm_create.name,
@@ -267,7 +267,7 @@ def create_ifm(ifm_create: ifm) -> ifm:
 def update_ifm(ifm_update: ifm) -> ifm:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.UUID(ifm_update.InputFormatGuid)
+    did = uuid.UUID(ifm_update.inputFormatGuid)
     cur.execute(UPDATE_IF, (did, ifm_update.name, ifm_update.description, ifm_update.fileExtension, ifm_update.fileMimeType))
     db.connection.commit()
     return get_ifm(did)
@@ -321,7 +321,7 @@ def create_ofm(ofm_create: ofm) -> ofm:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.uuid4()
-    ofm_create.OutputFormatGuid = did
+    ofm_create.outputFormatGuid = did
     cur.execute(INSERT_OF, (
         ofm_create.outputFormatGuid, 
         ofm_create.name,
@@ -415,7 +415,7 @@ def create_api(api_create: api) -> api:
 def update_api(api_update: api) -> api:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.UUID(api_update.OutputFormatGuid)
+    did = uuid.UUID(api_update.outputFormatGuid)
     cur.execute(UPDATE_API, (did, api_update.api, api_update.ownerEmailAddress, api_update.dateExpires, api_update.permissionCreate, api_update.permissionGlobalAdmin, api_update.isDisabled, api_update.isDeleted))
     db.connection.commit()
     return get_api(did)
@@ -482,7 +482,7 @@ def create_sr(sr_create: sr) -> sr:
 def update_sr(sr_update: sr) -> sr:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.UUID(sr_update.OutputFormatGuid)
+    did = uuid.UUID(sr_update.outputFormatGuid)
     cur.execute(UPDATE_SEARCH, (did, sr_update.name, sr_update.description))
     db.connection.commit()
     return get_sr(did)
