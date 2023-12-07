@@ -37,7 +37,7 @@ DELETE_IF = 'DELETE FROM "kershner"."InputFileFormat" WHERE InputFormatGuid=%s;'
 # output format OFM
 SELECT_ALL_OF = 'SELECT "OutputFormatGuid", "Name", "Description", "FunctionName", "FileExtension", "FileMIMEType" FROM "kershner"."DataOutputFormat";'
 SELECT_OF = 'SELECT "OutputFormatGuid", "Name", "Description", "FunctionName", "FileExtension", "FileMIMEType" FROM "kershner"."DataOutputFormat" WHERE "OutputFormatGuid"=%s;'
-INSERT_OF = 'INSERT INTO "kershner"."DataOutputFormat" "OutputFormatGuid", "Name", "Description", "FunctionName", "FileExtension", "FileMIMEType" VALUES(%s,%s,%s,%s,%s,%s);'
+INSERT_OF = 'INSERT INTO kershner."DataOutputFormat" VALUES(%s,%s,%s,%s,%s,%s);'
 UPDATE_OF = 'UPDATE "kershner"."DataOutputFormat" SET "Name" = %s, "Description" = %s, "FunctionName" = %s, "FileExtension" = %s, "FileMIMEType" = %s WHERE "OutputFormatGuid"=%s;'
 DELETE_OF = 'DELETE * FROM "kershner"."DataOutputFormat" WHERE "OutputFormatGuid"=%s;'
 
