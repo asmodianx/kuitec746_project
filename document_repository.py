@@ -5,54 +5,54 @@ from document_model import df, dmd, ifm, ofm, api, sr
 from db_connection import DBConnection
 
 # Documents
-#GET_ALL_FILE_BY_API = 'select A.API,A.APIGUID,A.OwnerEmailAddress,B.Name,B.Description,B.DateModified,B.DateUploaded,B.Revision,B.Name,B.IsCurrent,D.FileMIMEType,D.FileExtension,C.fileGuid from kershner.API A, kershner.FileMetadata B,kershner.InputFile C,kershner.InputFileFormat D WHERE A.APIGUID = %s AND A.APIGUID = B.APIGUID AND B.FileGuid = C.fileGuid AND  B.InputFormatGuid = D.InputFormatGuid AND A.IsDeleted = false AND A.IsDisabled = false AND A.DateExpires::date > current_date AND B.IsCurrent = true AND B.IsDeleted = false;'
-#INSERT_FMD = 'INSERT INTO kershner.FileMetadata(APIGUID, FileMetaDataGUID, Name, Description, DateUploaded, DateModified, Revision, IsCurrent, IsDeleted, FileGuid, InputFormatGuid, FileHash, FileCacheExpiration) SELECT %s as APIGUID, %s as FileMetaDataGUID, %s as Name, %s as Description, CURRENT_DATE as DateUploaded, CURRENT_DATE as DateModified, '1' as Revision, true as IsCurrent, false as IsDeleted, fileGuid as fileGuid, %s as InputFormatGuid, md5(fileContents)::text as fileHash, %s as FileCacheExpiration FROM kershner.InputFile WHERE fileGuid = %s;'
-#INSERT_FILE = 'INSERT INTO kershner.InputFile(fileGuid, fileContents) values(%s,%s);'
-#GET_FILE_BY_ID = 'select A.API,A.OwnerEmailAddress,B.FileMetaDataGUID,B.Name,B.Description,B.DateModified,B.DateUploaded,B.Revision,B.Name,B.IsCurrent,D.FileMIMEType,D.FileExtension,C.fileContents from kershner.API A,kershner.FileMetadata B,kershner.InputFile C,kershner.InputFileFormat D WHERE A.APIGUID = %s AND B.FileMetaDataGUID = %s A.APIGUID = B.APIGUID AND B.FileGuid = C.fileGuid AND B.InputFormatGuid = D.InputFormatGuid AND A.IsDeleted = false AND A.IsDisabled = false AND A.DateExpires::date > current_date AND B.IsCurrent = true AND B.IsDeleted = false;'
+#GET_ALL_FILE_BY_API = 'select A.API,A.APIGUID,A.OwnerEmailAddress,B.Name,B.Description,B.DateModified,B.DateUploaded,B.Revision,B.Name,B.IsCurrent,D.FileMIMEType,D.FileExtension,C.fileGuid from "kershner"."API" A, "kershner".FileMetadata B,"kershner".InputFile C,"kershner"."InputFileFormat" D WHERE A.APIGUID = %s AND A.APIGUID = B.APIGUID AND B.FileGuid = C.fileGuid AND  B.InputFormatGuid = D.InputFormatGuid AND A.IsDeleted = false AND A.IsDisabled = false AND A.DateExpires::date > current_date AND B.IsCurrent = true AND B.IsDeleted = false;'
+#INSERT_FMD = 'INSERT INTO "kershner".FileMetadata(APIGUID, FileMetaDataGUID, Name, Description, DateUploaded, DateModified, Revision, IsCurrent, IsDeleted, FileGuid, InputFormatGuid, FileHash, FileCacheExpiration) SELECT %s as APIGUID, %s as FileMetaDataGUID, %s as Name, %s as Description, CURRENT_DATE as DateUploaded, CURRENT_DATE as DateModified, '1' as Revision, true as IsCurrent, false as IsDeleted, fileGuid as fileGuid, %s as InputFormatGuid, md5(fileContents)::text as fileHash, %s as FileCacheExpiration FROM "kershner".InputFile WHERE fileGuid = %s;'
+#INSERT_FILE = 'INSERT INTO "kershner".InputFile(fileGuid, fileContents) values(%s,%s);'
+#GET_FILE_BY_ID = 'select A.API,A.OwnerEmailAddress,B.FileMetaDataGUID,B.Name,B.Description,B.DateModified,B.DateUploaded,B.Revision,B.Name,B.IsCurrent,D.FileMIMEType,D.FileExtension,C.fileContents from "kershner"."API" A,"kershner".FileMetadata B,"kershner".InputFile C,"kershner"."InputFileFormat" D WHERE A.APIGUID = %s AND B.FileMetaDataGUID = %s A.APIGUID = B.APIGUID AND B.FileGuid = C.fileGuid AND B.InputFormatGuid = D.InputFormatGuid AND A.IsDeleted = false AND A.IsDisabled = false AND A.DateExpires::date > current_date AND B.IsCurrent = true AND B.IsDeleted = false;'
 
 # Document file DF
-SELECT_ALL_FILES = 'SELECT fileGuid, fileContents FROM kershner.InputFile;'
-SELECT_FILE = 'SELECT fileGuid, fileContents FROM kershner.InputFile WHERE fileGuid = %s;'
-INSERT_FILE = 'INSERT INFO kershner.InputFile values(%s,%s);'
-UPDATE_FILE = 'UPDATE kershner.InputFile fileContents = %s WHERE fileGuid = %s;'
-DELETE_FILE = 'DELETE * FROM kershner.InputFile WHERE fileGuid = %s;'
+SELECT_ALL_FILES = 'SELECT fileGuid, fileContents FROM "kershner"."InputFile";'
+SELECT_FILE = 'SELECT fileGuid, fileContents FROM "kershner"."InputFile" WHERE fileGuid = %s;'
+INSERT_FILE = 'INSERT INFO "kershner"."InputFile" values(%s,%s);'
+UPDATE_FILE = 'UPDATE "kershner"."InputFile" fileContents = %s WHERE fileGuid = %s;'
+DELETE_FILE = 'DELETE * FROM "kershner"."InputFile" WHERE fileGuid = %s;'
 
 # DOCUMENT META DATA DMD
-SELECT_ALL_MD = 'SELECT APIGUID, FileMetaDataGUID, Name, Description, DateUploaded, DateModified, Revision, IsCurrent, IsDeleted, FileGuid, InputFormatGuid, FileHash, FileCacheExpiration FROM kershner.FileMetadata;'
-SELECT_MD = 'SELECT APIGUID, FileMetaDataGUID, Name, Description, DateUploaded, DateModified, Revision, IsCurrent, IsDeleted, FileGuid, InputFormatGuid, FileHash, FileCacheExpiration FROM kershner.FileMetadata WHERE FileMetaDataGUID =%s;'
-INSERT_MD = 'INSERT INTO kershner.FileMetadata values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);'
-UPDATE_MD = 'UPDATE kershner.FileMetadata SET APIGUID = %s, Name = %s, Description = %s, DateUploaded = %s, DateModified = %s, Revision, IsCurrent = %s, IsDeleted = %s, FileGuid = %s, InputFormatGuid = %s, FileHash = %s, FileCacheExpiration = %s WHERE FileMetaDataGUID =%s;'
-DELETE_MD = 'UPDATE kershner.FileMetadata SET IsDeleted = true where FileMetaDataGUID=%s;'
-PURGE_MD = 'DELETE * FROM kershner.FileMetadata where FileMetaDataGUID=%s;'
+SELECT_ALL_MD = 'SELECT APIGUID, FileMetaDataGUID, Name, Description, DateUploaded, DateModified, Revision, IsCurrent, IsDeleted, FileGuid, InputFormatGuid, FileHash, FileCacheExpiration FROM "kershner"."FileMetadata";'
+SELECT_MD = 'SELECT APIGUID, FileMetaDataGUID, Name, Description, DateUploaded, DateModified, Revision, IsCurrent, IsDeleted, FileGuid, InputFormatGuid, FileHash, FileCacheExpiration FROM "kershner"."FileMetadata" WHERE FileMetaDataGUID =%s;'
+INSERT_MD = 'INSERT INTO "kershner"."FileMetadata" values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);'
+UPDATE_MD = 'UPDATE "kershner"."FileMetadata" SET APIGUID = %s, Name = %s, Description = %s, DateUploaded = %s, DateModified = %s, Revision, IsCurrent = %s, IsDeleted = %s, FileGuid = %s, InputFormatGuid = %s, FileHash = %s, FileCacheExpiration = %s WHERE FileMetaDataGUID =%s;'
+DELETE_MD = 'UPDATE "kershner"."FileMetadata" SET IsDeleted = true where FileMetaDataGUID=%s;'
+PURGE_MD = 'DELETE * FROM "kershner"."FileMetadata" where FileMetaDataGUID=%s;'
 
 # input format IFM
-SELECT_ALL_IF = 'SELECT InputFormatGuid, Name, Description, FileExtension, FileMIMEType FROM kershner.InputFileFormat;'
-SELECT_IF = 'SELECT InputFormatGuid, Name, Description, FileExtension, FileMIMEType FROM kershner.InputFileFormat WHERE InputFormatGuid =%s;'
-INSERT_IF = 'INSERT INTO kershner.InputFileFormat VALUES(GEN_RANDOM_UUID(),%s,%s,%s,%s);'
-UPDATE_IF = 'UPDATE kershner.InputFileFormat SET Name=%s, Description=%s, FileExtension=%s, FileMIMEType = %s WHERE InputFormatGuid =%s;'
-DELETE_IF = 'DELETE FROM kershner.InputFileFormat WHERE InputFormatGuid =%s;'
+SELECT_ALL_IF = 'SELECT InputFormatGuid, Name, Description, FileExtension, FileMIMEType FROM "kershner"."InputFileFormat";'
+SELECT_IF = 'SELECT InputFormatGuid, Name, Description, FileExtension, FileMIMEType FROM "kershner"."InputFileFormat" WHERE InputFormatGuid =%s;'
+INSERT_IF = 'INSERT INTO "kershner"."InputFileFormat" VALUES(GEN_RANDOM_UUID(),%s,%s,%s,%s);'
+UPDATE_IF = 'UPDATE "kershner"."InputFileFormat" SET Name=%s, Description=%s, FileExtension=%s, FileMIMEType = %s WHERE InputFormatGuid =%s;'
+DELETE_IF = 'DELETE FROM "kershner"."InputFileFormat" WHERE InputFormatGuid =%s;'
 
 # output format OFM
-SELECT_ALL_OF = 'SELECT OutputFormatGuid, Name, Description, FunctionName, FileExtension, FileMIMEType FROM kershner.DataOutputFormat;'
-SELECT_OF = 'SELECT OutputFormatGuid, Name, Description, FunctionName, FileExtension, FileMIMEType FROM kershner.DataOutputFormat WHERE OutputFormatGuid =%s;'
-INSERT_OF = 'INSERT INTO kershner.DataOutputFormat VALUES(GEN_RANDOM_UUID(),%s,%s,%s,%s,%s);'
-UPDATE_OF = 'UPDATE kershner.DataOutputFormat SET Name = %s, Description = %s, FunctionName = %s, FileExtension = %s, FileMIMEType = %s WHERE OutputFormatGuid =%s;'
-DELETE_OF = 'DELETE * FROM kershner.DataOutputFormat WHERE OutputFormatGuid=%s;'
+SELECT_ALL_OF = 'SELECT OutputFormatGuid, Name, Description, FunctionName, FileExtension, FileMIMEType FROM "kershner"."DataOutputFormat";'
+SELECT_OF = 'SELECT OutputFormatGuid, Name, Description, FunctionName, FileExtension, FileMIMEType FROM "kershner"."DataOutputFormat" WHERE OutputFormatGuid =%s;'
+INSERT_OF = 'INSERT INTO "kershner"."DataOutputFormat" VALUES(GEN_RANDOM_UUID(),%s,%s,%s,%s,%s);'
+UPDATE_OF = 'UPDATE "kershner"."DataOutputFormat" SET Name = %s, Description = %s, FunctionName = %s, FileExtension = %s, FileMIMEType = %s WHERE OutputFormatGuid =%s;'
+DELETE_OF = 'DELETE * FROM "kershner"."DataOutputFormat" WHERE OutputFormatGuid=%s;'
 
 # API API
-SELECT_ALL_API = 'SELECT APIGUID, API, OwnerEmailAddress, DateExpires, PermissionCreate, PermissionGlobalAdmin, IsDisabled, IsDeleted FROM kershner.API;'
-SELECT_API = 'SELECT APIGUID, API, OwnerEmailAddress, DateExpires, PermissionCreate, PermissionGlobalAdmin, IsDisabled, IsDeleted FROM kershner.API WHERE APIGUID =%s;'
-INSERT_API = 'INSERT INTO kershner.API VALUES (GENERATE_RANDOM_UUID(),%s,%s,%s,%s,%s,false,false);'
-UPDATE_API = 'UPDATE kershner.API SET API = %s, OwnerEmailAddress = %s, DateExpires = %s, PermissionCreate = %s, PermissionGlobalAdmin = %s, IsDisabled = %s, IsDeleted = %s WHERE APIGUID = %s;'
-DELETE_API = 'UPDATE kershner.API SET IsDisabled = true,IsDeleted = true WHERE APIGUID = %s;'
-PURGE_API = 'DELETE * FROM kershner.API WHERE APIGUID = %s;'
+SELECT_ALL_API = 'SELECT APIGUID, API, OwnerEmailAddress, DateExpires, PermissionCreate, PermissionGlobalAdmin, IsDisabled, IsDeleted FROM "kershner"."API";'
+SELECT_API = 'SELECT APIGUID, API, OwnerEmailAddress, DateExpires, PermissionCreate, PermissionGlobalAdmin, IsDisabled, IsDeleted FROM "kershner"."API" WHERE APIGUID =%s;'
+INSERT_API = 'INSERT INTO "kershner"."API" VALUES (GENERATE_RANDOM_UUID(),%s,%s,%s,%s,%s,false,false);'
+UPDATE_API = 'UPDATE "kershner"."API" SET API = %s, OwnerEmailAddress = %s, DateExpires = %s, PermissionCreate = %s, PermissionGlobalAdmin = %s, IsDisabled = %s, IsDeleted = %s WHERE APIGUID = %s;'
+DELETE_API = 'UPDATE "kershner"."API" SET IsDisabled = true,IsDeleted = true WHERE APIGUID = %s;'
+PURGE_API = 'DELETE * FROM "kershner"."API" WHERE APIGUID = %s;'
 
 # search SR
-SELECT_ALL_SEARCH = 'SELECT SearchGUID, Name, Description FROM kershner.Search;'
-SELECT_SEARCH = 'SELECT SearchGUID, Name, Description FROM kershner.Search where SearchGUID = %s;'
-INSERT_SEARCH = 'INSERT INTO kershner.Search VALUES(GENERATE_RANDOM_UUID(),%s,%s);'
-UPDATE_SEARCH = 'UPDATE SearchGUID, Name, Description FROM kershner.Search;'
-DELETE_SEARCH = 'DELETE * FROM kershner.Search WHERE SearchGUID = %s;'
+SELECT_ALL_SEARCH = 'SELECT SearchGUID, Name, Description FROM "kershner"."Search";'
+SELECT_SEARCH = 'SELECT SearchGUID, Name, Description FROM "kershner"."Search" where SearchGUID = %s;'
+INSERT_SEARCH = 'INSERT INTO "kershner"."Search" VALUES(GENERATE_RANDOM_UUID(),%s,%s);'
+UPDATE_SEARCH = 'UPDATE SearchGUID, Name, Description FROM "kershner"."Search";'
+DELETE_SEARCH = 'DELETE * FROM "kershner"."Search" WHERE SearchGUID = %s;'
 
 #fixme: ubdates get two dids, by default it uses the one imbedded in the data object but for some reason im pulling the did in seperatly... 
 
@@ -349,7 +349,7 @@ def delete_ofm(did: str):
     
 #=== API
 #APIGUID, API, OwnerEmailAddress, DateExpires, PermissionCreate, PermissionGlobalAdmin, IsDisabled, IsDeleted
-#(UUID('b7c4030e-942a-43c8-9274-64af9549877f'), 'TESTKEYTESTKEYTESTKEYTESTKEY', 'joel.kershner@gmail.com', datetime.datetime(2525, 12, 24, 0, 0), True, True, False, False)
+#(UUID('b7c4030e-942a-43c8-9274-64af9549877f'), 'TESTKEYTESTKEYTESTKEYTESTKEY', 'joel."kershner"@gmail.com', datetime.datetime(2525, 12, 24, 0, 0), True, True, False, False)
 def get_all_api() -> List[api]:
     api_list = []
     db = DBConnection()
