@@ -30,7 +30,7 @@ PURGE_MD = 'DELETE * FROM "kershner"."FileMetadata" where "FileMetaDataGUID"=%s;
 # input format IFM
 SELECT_ALL_IF = 'SELECT "InputFormatGuid", "Name", "Description", "FileExtension", "FileMIMEType" FROM "kershner"."InputFileFormat";'
 SELECT_IF = 'SELECT "InputFormatGuid", "Name", "Description", "FileExtension", "FileMIMEType" FROM "kershner"."InputFileFormat" WHERE InputFormatGuid=%s;'
-INSERT_IF = 'INSERT INTO "kershner"."InputFileFormat" "InputFormatGuid", "Name", "Description", "FileExtension", "FileMIMEType" VALUES(GEN_RANDOM_UUID(),%s,%s,%s,%s);'
+INSERT_IF = 'INSERT INTO "kershner"."InputFileFormat" "InputFormatGuid", "Name", "Description", "FileExtension", "FileMIMEType" VALUES(%s,%s,%s,%s,%s);'
 UPDATE_IF = 'UPDATE "kershner"."InputFileFormat" SET "Name"=%s, "Description"=%s, "FileExtension"=%s, "FileMIMEType" = %s WHERE InputFormatGuid=%s;'
 DELETE_IF = 'DELETE FROM "kershner"."InputFileFormat" WHERE InputFormatGuid=%s;'
 
@@ -44,7 +44,7 @@ DELETE_OF = 'DELETE * FROM "kershner"."DataOutputFormat" WHERE "OutputFormatGuid
 # API API
 SELECT_ALL_API = 'SELECT "APIGUID", "API", "OwnerEmailAddress", "DateExpires", "PermissionCreate", "PermissionGlobalAdmin", "IsDisabled", "IsDeleted" FROM "kershner"."API";'
 SELECT_API = 'SELECT "APIGUID", "API", "OwnerEmailAddress", "DateExpires", "PermissionCreate", "PermissionGlobalAdmin", "IsDisabled", "IsDeleted" FROM "kershner"."API" WHERE APIGUID=%s;'
-INSERT_API = 'INSERT INTO "kershner"."API" "APIGUID", "API", "OwnerEmailAddress", "DateExpires", "PermissionCreate", "PermissionGlobalAdmin", "IsDisabled", "IsDeleted" VALUES (GENERATE_RANDOM_UUID(),%s,%s,%s,%s,%s,false,false);'
+INSERT_API = 'INSERT INTO "kershner"."API" "APIGUID", "API", "OwnerEmailAddress", "DateExpires", "PermissionCreate", "PermissionGlobalAdmin", "IsDisabled", "IsDeleted" VALUES (%s,%s,%s,%s,%s,%s,false,false);'
 UPDATE_API = 'UPDATE "kershner"."API" SET "API" = %s, "OwnerEmailAddress" = %s, "DateExpires" = %s, "PermissionCreate" = %s, "PermissionGlobalAdmin" = %s, "IsDisabled" = %s, "IsDeleted" = %s WHERE "APIGUID" = %s;'
 DELETE_API = 'UPDATE "kershner"."API" SET IsDisabled = true,IsDeleted = true WHERE "APIGUID" = %s;'
 PURGE_API = 'DELETE * FROM "kershner"."API" WHERE "APIGUID" = %s;'
@@ -52,7 +52,7 @@ PURGE_API = 'DELETE * FROM "kershner"."API" WHERE "APIGUID" = %s;'
 # search SR
 SELECT_ALL_SEARCH = 'SELECT "SearchGUID", "Name", "Description" FROM "kershner"."Search";'
 SELECT_SEARCH = 'SELECT "SearchGUID", "Name", "Description" FROM "kershner"."Search" where "SearchGUID" = %s;'
-INSERT_SEARCH = 'INSERT INTO "kershner"."Search" "SearchGUID", "Name", "Description" VALUES(GENERATE_RANDOM_UUID(),%s,%s);'
+INSERT_SEARCH = 'INSERT INTO "kershner"."Search" "SearchGUID", "Name", "Description" VALUES(%s,%s,%s);'
 UPDATE_SEARCH = 'UPDATE "SearchGUID", "Name", "Description" FROM "kershner"."Search";'
 DELETE_SEARCH = 'DELETE * FROM "kershner"."Search" WHERE "SearchGUID" = %s;'
 
