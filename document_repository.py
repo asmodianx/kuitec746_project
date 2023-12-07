@@ -323,7 +323,7 @@ def get_ofm(did: str) -> List[ofm]:
 def create_ofm(ofm_create: ofm) -> ofm:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.uuid4()
+    did = str(uuid.uuid4())
     # outputFormatGuid: Optional[str] = None     name: Optional[str] = None     description: Optional[str] = None     functionName: Optional[str] = None     fileExtension: Optional[str] = None fileMimeType: Optional[str] = None
 
     cur.execute(INSERT_OF, ( did, ofm_create.name,ofm_create.description, ofm_create.functionName, ofm_create.fileExtension, ofm_create.fileMimeType ))
