@@ -104,7 +104,7 @@ def get_df(did: str) -> List[df]:
     df_list = []
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(SELECT_FILE, did)
+    cur.execute(SELECT_FILE, [did])
 #fileGuid, fileContents
     for row in cur:
         df_list.append(
@@ -119,7 +119,7 @@ def get_dmd(did: str) -> List[dmd]:
     dmd_list = []
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(SELECT_MD, did)
+    cur.execute(SELECT_MD, [did])
     #APIGUID, FileMetaDataGUID, Name, Description, DateUploaded, DateModified, Revision, IsCurrent, IsDeleted, FileGuid, InputFormatGuid, FileHash, FileCacheExpiration
     for row in cur:
         dmd_list.append(
@@ -197,21 +197,21 @@ def update_dmd(dmd_update: dmd) -> dmd:
 def delete_df(did):
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(DELETE_FILE, (did))
+    cur.execute(DELETE_FILE, [did])
     db.connection.commit()
     return
     
 def delete_dmd(did: str):
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(DELETE_MD, (did))
+    cur.execute(DELETE_MD, [did])
     db.connection.commit()
     return
 
 def purge_dmd(did: str):
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(PURGE_MD, (did))
+    cur.execute(PURGE_MD, [did])
     db.connection.commit()
     return
 
@@ -238,7 +238,7 @@ def get_ifm(did: str) -> List[ifm]:
     ifm_list = []
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(SELECT_IF, (did))
+    cur.execute(SELECT_IF, [did])
     for row in cur:
         ifm_list.append(
             ifm(
@@ -278,7 +278,7 @@ def update_ifm(ifm_update: ifm) -> ifm:
 def delete_ifm(did: str):
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(DELETE_IF, (did))
+    cur.execute(DELETE_IF, [did])
     db.connection.commit()
     return
     
@@ -339,7 +339,7 @@ def update_ofm(ofm_update: ofm) -> ofm:
 def delete_ofm(did: str):
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(DELETE_OF, (did))
+    cur.execute(DELETE_OF, [did])
     db.connection.commit()
     return
     
@@ -418,14 +418,14 @@ def update_api(api_update: api) -> api:
 def delete_api(did: str):
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(DELETE_API, (did))
+    cur.execute(DELETE_API, [did])
     db.connection.commit()
     return    
 
 def purge_api(did: str):
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(PURGE_API, (did))
+    cur.execute(PURGE_API, [did])
     db.connection.commit()
     return    
 
@@ -485,6 +485,6 @@ def update_sr(sr_update: sr) -> sr:
 def delete_sr(did: str):
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(DELETE_SEARCH, (did))
+    cur.execute(DELETE_SEARCH, [did])
     db.connection.commit()
     return
