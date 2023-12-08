@@ -107,12 +107,7 @@ def get_df(did: str) -> List[df]:
     cur.execute(SELECT_FILE, [did])
 #fileGuid, fileContents
     for row in cur:
-        df_list.append(
-            df(
-                fileGuid=str(row[0]),
-                fileContents=str(row[1])
-            )
-        )
+        df_list=df(fileGuid=str(row[0]), fileContents=str(row[1])
     return df_list
 
 def get_dmd(did: str) -> List[dmd]:
@@ -122,23 +117,7 @@ def get_dmd(did: str) -> List[dmd]:
     cur.execute(SELECT_MD, [did])
     #APIGUID, FileMetaDataGUID, Name, Description, DateUploaded, DateModified, Revision, IsCurrent, IsDeleted, FileGuid, InputFormatGuid, FileHash, FileCacheExpiration
     for row in cur:
-        dmd_list.append(
-            dmd(
-                apiGuid=str(row[0]),
-                fileMetaDataGUID=str(row[1]),
-                name=str(row[2]),
-                description=str(row[3]),
-                dateUploaded=str(row[4]),
-                dateModified=str(row[5]),
-                revision=str(row[6]),
-                isCurrent=bool(row[7]),
-                isDeleted=bool(row[8]),
-                fileGuid=str(row[9]),
-                inputFormatGuid=str(row[10]),
-                fileHash=str(row[11]),
-                fileCacheExpiration=str(row[12])
-            )
-        )
+        dmd_list=dmd(apiGuid=str(row[0]),fileMetaDataGUID=str(row[1]),name=str(row[2]),description=str(row[3]),dateUploaded=str(row[4]),dateModified=str(row[5]),revision=str(row[6]),isCurrent=bool(row[7]),isDeleted=bool(row[8]),fileGuid=str(row[9]),inputFormatGuid=str(row[10]),fileHash=str(row[11]),fileCacheExpiration=str(row[12]))
     return dmd_list
 
 def create_df(df_create: df) -> df:
@@ -240,15 +219,7 @@ def get_ifm(did: str) -> List[ifm]:
     cur = db.get_cursor()
     cur.execute(SELECT_IF, [did])
     for row in cur:
-        ifm_list.append(
-            ifm(
-                inputFormatGuid=str(row[0]),
-                name=str(row[1]),
-                description=str(row[2]),
-                fileExtension=str(row[3]),
-                fileMimeType=str(row[4])
-                )
-        )
+        ifm_list=ifm(inputFormatGuid=str(row[0]), name=str(row[1]),description=str(row[2]),fileExtension=str(row[3]),fileMimeType=str(row[4]))
     return ifm_list
 
 def create_ifm(ifm_create: ifm) -> ifm:
@@ -365,18 +336,7 @@ def get_api(did: str) -> List[api]:
     cur = db.get_cursor()
     cur.execute(SELECT_API, did)
     for row in cur:
-        api_list.append(
-            api(
-                apiGuid=str(row[0]),
-                api=str(row[1]),
-                ownerEmailAddress=str(row[2]), 
-                dateExpires=str(row[3]), 
-                permissionCreate=bool(row[4]),
-                permissionGlobalAdmin=bool(row[5]),
-                isDisabled=bool(row[6]),
-                isDeleted=bool(row[7])
-            )
-        )
+        api_list=api(apiGuid=str(row[0]),api=str(row[1]),ownerEmailAddress=str(row[2]),dateExpires=str(row[3]),permissionCreate=bool(row[4]),permissionGlobalAdmin=bool(row[5]),isDisabled=bool(row[6]),isDeleted=bool(row[7]))
     return api_list
 
 def create_api(api_create: api) -> api:
@@ -442,13 +402,7 @@ def get_sr(did: str) -> List[sr]:
     cur = db.get_cursor()
     cur.execute(SELECT_SEARCH, did)
     for row in cur:
-        sr_list.append(
-            sr(
-                searchGuid=str(row[0]),
-                name=str(row[1]),
-                description=str(row[2])
-            )
-        )
+        sr_list=sr(searchGuid=str(row[0]),name=str(row[1]),description=str(row[2]))
     return sr_list
 
 def create_sr(sr_create: sr) -> sr:
