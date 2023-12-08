@@ -408,7 +408,7 @@ def get_sr(did: str) -> List[sr]:
 def create_sr(sr_create: sr) -> sr:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.uuid4()
+    did = str(uuid.uuid4())
     cur.execute(INSERT_SEARCH, (
         did,
         sr_create.name,
