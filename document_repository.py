@@ -308,7 +308,7 @@ def get_ofm(did: uuid) -> List[ofm]:
     cur = db.get_cursor()
     cur.execute(SELECT_OF,[did])
     for row in cur:
-        ofm_list=ofm(outputFormatGuid=str(row[0]),name=str(row[1]),description=str(row[2]),functionName=str(row[3]),fileExtension=str(row[4]),fileMimeType=str(row[5])))
+        ofm_list=ofm( outputFormatGuid=str(row[0]),name=str(row[1]),description=str(row[2]),functionName=str(row[3]),fileExtension=str(row[4]),fileMimeType=str(row[5]))
     return ofm_list
 
 def create_ofm(ofm_create: ofm) -> ofm:
