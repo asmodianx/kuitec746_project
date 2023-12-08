@@ -110,14 +110,14 @@ def get_df(did: str) -> List[df]:
         df_list=df(fileGuid=str(row[0]), fileContents=str(row[1]))
     return df_list
 
-def get_dmd(did: str) -> List[dmd]:
+def get_dmd(did: uuid) -> List[dmd]:
     dmd_list = []
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_MD, [did])
-    #APIGUID, FileMetaDataGUID, Name, Description, DateUploaded, DateModified, Revision, IsCurrent, IsDeleted, FileGuid, InputFormatGuid, FileHash, FileCacheExpiration
+    
     for row in cur:
-        dmd_list=dmd(apiGuid=str(row[0]),fileMetaDataGUID=str(row[1]),name=str(row[2]),description=str(row[3]),dateUploaded=str(row[4]),dateModified=str(row[5]),revision=str(row[6]),isCurrent=bool(row[7]),isDeleted=bool(row[8]),fileGuid=str(row[9]),inputFormatGuid=str(row[10]),fileHash=str(row[11]),fileCacheExpiration=str(row[12]))
+        dmd_list = dmd(apiGuid = str(row[0]),fileMetaDataGUID = str(row[1]),name = str(row[2]),description = str(row[3]),dateUploaded = str(row[4]),dateModified = str(row[5]),revision = str(row[6]),isCurrent = bool(row[7]),isDeleted = bool(row[8]),fileGuid = str(row[9]),inputFormatGuid = str(row[10]),fileHash = str(row[11]),fileCacheExpiration = str(row[12]))
     return dmd_list
 
 def create_df(df_create: df) -> df:
@@ -279,7 +279,7 @@ def get_ofm(did: uuid) -> List[ofm]:
     cur = db.get_cursor()
     cur.execute(SELECT_OF,[did])
     for row in cur:
-        ofm_list=ofm( outputFormatGuid=str(row[0]),name=str(row[1]),description=str(row[2]),functionName=str(row[3]),fileExtension=str(row[4]),fileMimeType=str(row[5]))
+        ofm_list=ofm(outputFormatGuid=str(row[0]),name=str(row[1]),description=str(row[2]),functionName=str(row[3]),fileExtension=str(row[4]),fileMimeType=str(row[5]))
     return ofm_list
 
 def create_ofm(ofm_create: ofm) -> ofm:
