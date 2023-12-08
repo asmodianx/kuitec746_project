@@ -123,7 +123,7 @@ def get_dmd(did: uuid) -> List[dmd]:
 def create_df(df_create: df) -> df:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.uuid4()
+    did = str(uuid.uuid4())
     df_create.fileGuid = did
     cur.execute(INSERT_FILE, (
         df_create.fileGuid,
@@ -136,7 +136,7 @@ def create_df(df_create: df) -> df:
 def create_dmd(dmd_create: dmd) -> dmd:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.uuid4()
+    did = str(uuid.uuid4())
     dmd_create.fileMetaDataGUID = did
     cur.execute(INSERT_MD, (
         dmd_create.apiGuid,
@@ -225,7 +225,7 @@ def get_ifm(did: str) -> List[ifm]:
 def create_ifm(ifm_create: ifm) -> ifm:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.uuid4()
+    did = str(uuid.uuid4())
     ifm_create.inputFormatGuid = did
     cur.execute(INSERT_IF, (
         ifm_create.inputFormatGuid, 
@@ -342,7 +342,7 @@ def get_api(did: uuid) -> List[api]:
 def create_api(api_create: api) -> api:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.uuid4()
+    did = str(uuid.uuid4())
     api_create.outputFormatGuid = did
     cur.execute(INSERT_API, (
     api.APIGUID, 
