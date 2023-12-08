@@ -334,7 +334,7 @@ def get_api(did: uuid) -> List[api]:
     api_list = []
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(SELECT_API, did)
+    cur.execute(SELECT_API, [did])
     for row in cur:
         api_list=api(apiGuid=str(row[0]),api=str(row[1]),ownerEmailAddress=str(row[2]),dateExpires=str(row[3]),permissionCreate=bool(row[4]),permissionGlobalAdmin=bool(row[5]),isDisabled=bool(row[6]),isDeleted=bool(row[7]))
     return api_list
