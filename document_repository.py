@@ -400,7 +400,7 @@ def get_sr(did: str) -> List[sr]:
     sr_list = []
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(SELECT_SEARCH, did)
+    cur.execute(SELECT_SEARCH, [did])
     for row in cur:
         sr_list=sr(searchGuid=str(row[0]),name=str(row[1]),description=str(row[2]))
     return sr_list
