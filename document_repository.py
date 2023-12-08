@@ -302,11 +302,11 @@ def get_all_ofm() -> List[ofm]:
             )
         )
     return ofm_list
-def get_ofm(did: str) -> List[ofm]:
+def get_ofm(did: uuid) -> List[ofm]:
     ofm_list = []
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(SELECT_OF, [str(did)] )
+    cur.execute(SELECT_OF, [did] )
     for row in cur:
         ofm_list.append(
             ofm(
