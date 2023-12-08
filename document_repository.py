@@ -107,7 +107,7 @@ def get_df(did: str) -> List[df]:
     cur.execute(SELECT_FILE, [did])
 #fileGuid, fileContents
     for row in cur:
-        df_list=df(fileGuid=str(row[0]), fileContents=str(row[1])
+        df_list=df(fileGuid=str(row[0]), fileContents=str(row[1]))
     return df_list
 
 def get_dmd(did: str) -> List[dmd]:
