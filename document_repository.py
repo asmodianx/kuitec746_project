@@ -302,7 +302,7 @@ def get_all_ofm() -> List[ofm]:
             )
         )
     return ofm_list
-def get_ofm(did: uuid) -> List[ofm]:
+def get_ofm(did: str) -> List[ofm]:
     ofm_list = []
     db = DBConnection()
     cur = db.get_cursor()
