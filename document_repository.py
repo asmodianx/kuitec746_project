@@ -306,7 +306,7 @@ def get_ofm(did: str) -> List[ofm]:
     ofm_list = []
     db = DBConnection()
     cur = db.get_cursor()
-    diduuid = uuid.uuid4(did)
+    diduuid = str(uuid.uuid4(did))
     cur.execute(SELECT_OF,diduuid)
     for row in cur:
         ofm_list.append(
