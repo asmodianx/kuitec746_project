@@ -330,7 +330,7 @@ def get_all_api() -> List[api]:
         )
         print(api_list)  
     return api_list    
-def get_api(did: str) -> List[api]:
+def get_api(did: uuid) -> List[api]:
     api_list = []
     db = DBConnection()
     cur = db.get_cursor()
