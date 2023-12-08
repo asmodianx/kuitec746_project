@@ -52,7 +52,7 @@ PURGE_API = 'DELETE * FROM "kershner"."API" WHERE "APIGUID" = %s;'
 # search SR
 SELECT_ALL_SEARCH = 'SELECT "SearchGUID", "Name", "Description" FROM "kershner"."Search";'
 SELECT_SEARCH = 'SELECT "SearchGUID", "Name", "Description" FROM "kershner"."Search" where "SearchGUID" = %s;'
-INSERT_SEARCH = 'INSERT INTO "kershner"."Search" "SearchGUID", "Name", "Description" VALUES(%s,%s,%s);'
+INSERT_SEARCH = 'INSERT INTO kershner."Search" VALUES(%s,%s,%s);'
 UPDATE_SEARCH = 'UPDATE "SearchGUID", "Name", "Description" FROM "kershner"."Search";'
 DELETE_SEARCH = 'DELETE * FROM "kershner"."Search" WHERE "SearchGUID" = %s;'
 
