@@ -409,9 +409,8 @@ def create_sr(sr_create: sr) -> sr:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.uuid4()
-    sr_create.OutputFormatGuid = did
     cur.execute(INSERT_SEARCH, (
-        sr_create.searchGuid,
+        did,
         sr_create.name,
         sr_create.description
         )
