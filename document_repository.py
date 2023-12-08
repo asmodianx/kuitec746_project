@@ -124,12 +124,7 @@ def create_df(df_create: df) -> df:
     db = DBConnection()
     cur = db.get_cursor()
     did = str(uuid.uuid4())
-    df_create.fileGuid = did
-    cur.execute(INSERT_FILE, (
-        df_create.fileGuid,
-        df_create.fileContents
-        )
-    )
+    cur.execute(INSERT_FILE, (did,df_create.fileContents))
     db.connection.commit()
     return get_df(did)
 
@@ -137,23 +132,7 @@ def create_dmd(dmd_create: dmd) -> dmd:
     db = DBConnection()
     cur = db.get_cursor()
     did = str(uuid.uuid4())
-    dmd_create.fileMetaDataGUID = did
-    cur.execute(INSERT_MD, (
-        dmd_create.apiGuid,
-        dmd_create.fileMetaDataGUID,
-        dmd_create.name,
-        dmd_create.description,
-        dmd_create.dateUploaded,
-        dmd_create.dateModified,
-        dmd_create.revision,
-        dmd_create.isCurrent,
-        dmd_create.isDeleted,
-        dmd_create.fileGuid,
-        dmd_create.inputFormatGuid,
-        dmd_create.fileHash,
-        dmd_create.fileCacheExpiration
-       )
-    )
+    cur.execute(INSERT_MD, (dmd_create.apiGuid,did,dmd_create.name,dmd_create.description,dmd_create.dateUploaded,dmd_create.dateModified,dmd_create.revision,dmd_create.isCurrent,dmd_create.isDeleted,dmd_create.fileGuid,dmd_create.inputFormatGuid,dmd_create.fileHash,dmd_create.fileCacheExpiration))
     db.connection.commit()
     return get_dmd(did)
 
@@ -226,15 +205,7 @@ def create_ifm(ifm_create: ifm) -> ifm:
     db = DBConnection()
     cur = db.get_cursor()
     did = str(uuid.uuid4())
-    ifm_create.inputFormatGuid = did
-    cur.execute(INSERT_IF, (
-        ifm_create.inputFormatGuid, 
-        ifm_create.name,
-        ifm_create.description,
-        ifm_create.fileExtension,
-        ifm_create.fileMimeType
-        )
-    )
+    cur.execute(INSERT_IF, (did, ifm_create.name,ifm_create.description,ifm_create.fileExtension,ifm_create.fileMimeType))
     db.connection.commit()
     return get_ifm(did)
 
@@ -343,18 +314,7 @@ def create_api(api_create: api) -> api:
     db = DBConnection()
     cur = db.get_cursor()
     did = str(uuid.uuid4())
-    api_create.outputFormatGuid = did
-    cur.execute(INSERT_API, (
-    api.APIGUID, 
-        api_create.api,
-        api_create.ownerEmailAddress,
-        api_create.dateExpires,
-        api_create.permissionCreate,
-        api_create.permissionGlobalAdmin,
-        api_create.isDisabled,
-        api_create.isDeleted
-        )
-    )
+    cur.execute(INSERT_API, (did,api_create.api,api_create.ownerEmailAddress,api_create.dateExpires,api_create.permissionCreate,api_create.permissionGlobalAdmin,api_create.isDisabled,api_create.isDeleted))
     db.connection.commit()
     return get_api(did)
 
@@ -409,12 +369,7 @@ def create_sr(sr_create: sr) -> sr:
     db = DBConnection()
     cur = db.get_cursor()
     did = str(uuid.uuid4())
-    cur.execute(INSERT_SEARCH, (
-        did,
-        sr_create.name,
-        sr_create.description
-        )
-    )
+    cur.execute(INSERT_SEARCH, (did,sr_create.name,sr_create.description))
     db.connection.commit()
     return get_sr(did)
 
