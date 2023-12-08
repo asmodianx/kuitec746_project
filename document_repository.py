@@ -306,7 +306,7 @@ def get_ofm(did: str) -> List[ofm]:
     ofm_list = []
     db = DBConnection()
     cur = db.get_cursor()
-    cur.execute(SELECT_OF, [did] )
+    cur.execute(SELECT_OF,(did))
     for row in cur:
         ofm_list.append(
             ofm(
