@@ -50,37 +50,31 @@ def api_get_all_sr() -> List[sr]:
 @app.get("/df/{did1}")
 def api_get_df(did1: str) -> df:
     did = uuid.UUID(did1)
-    df_result = get_df(did)
-    return df_result
+    return get_df(did)
 
 @app.get("/dmd/{did1}")
 def api_get_dmd(did1: str) -> dmd:
     did = uuid.UUID(did1)
-    dmd_result = get_dmd(did)
-    return dmd_result
+    return get_dmd(did)
 
 @app.get("/ifm/{did1}")
 def api_get_ifm(did1: str) -> ifm:
     did = uuid.UUID(did1)
-    ifm_result = get_ifm(did)
-    return ifm_result
+    return get_ifm(did)
 
 @app.get("/ofm/{did1}")
 def api_get_ofm(did1: str) -> ofm:
     did = uuid.UUID(did1)
-    ofm_result = get_ofm(did)
-    return ofm_result
+    return get_ofm(did)
 
 @app.get("/api/{did1}")
 def api_get_api(did1: str) -> api:
     did = uuid.UUID(did1)
-    api_result = get_api(did)
-    return api_result
+    return get_api(did)
 @app.get("/sr/{did1}")
 def api_get_sr(did1: str) -> sr:
     did = uuid.UUID(did1)
-    sr_result = get_sr(did)
-    return sr_result
+    return get_sr(did)
 
 #=== create record
 @app.post("/df")
