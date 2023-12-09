@@ -83,33 +83,33 @@ def api_get_sr(did1: str) -> sr:
 #    return new_ifm
 
 @app.post("/df")
-async def api_create_df(df_post :df) -> List[df]:
-    output = await create_df(df_post)
+def api_create_df(df_post :df) -> List[df]:
+    output = create_df(df_post)
     return output
 
 @app.post("/dmd")
-async def api_create_dmd(dmd_post :dmd) -> List[dmd]:
-    output = await create_dmd(dmd_post)
+def api_create_dmd(dmd_post :dmd) -> List[dmd]:
+    output = create_dmd(dmd_post)
     return output
 
 @app.post("/ifm")
-async def api_create_ifm(ifm_post :ifm) -> List[ifm]:
-    output = await create_ifm(ifm_post)
+def api_create_ifm(ifm_post :ifm) -> List[ifm]:
+    output = create_ifm(ifm_post)
     return output
 
 @app.post("/ofm")
-async def api_create_ofm(ofm_post :ofm) -> List[ofm]:
-    output = await create_ofm(ofm_post)
+def api_create_ofm(ofm_post :ofm) -> List[ofm]:
+    output = create_ofm(ofm_post)
     return output
     
 @app.post("/api")
-async def api_create_api(api_post :api) -> List[api]:
-    output = await create_api(api_post)
+def api_create_api(api_post :api) -> List[api]:
+    output = create_api(api_post)
     return output
     
 @app.post("/sr")
-async def api_create_sr(sr_post :sr) -> List[sr]:
-    output = await create_sr(sr_post)
+def api_create_sr(sr_post :sr) -> List[sr]:
+    output = create_sr(sr_post)
     return output
 # update record
 @app.put("/df/{did}")
