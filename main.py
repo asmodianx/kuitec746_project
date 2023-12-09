@@ -77,32 +77,41 @@ def api_get_sr(did1: str) -> sr:
     return get_sr(did)
 
 #=== create record
+#@app.post("/ifm")
+#async def api_create_ifm(ifm_post :ifm) -> List[ifm]:
+#    new_ifm = await create_ifm(ifm_post)
+#    return new_ifm
+
 @app.post("/df")
 def api_create_df(df_post :df) -> List[df]:
-    return create_df(df_post)
+    output = await create_df(df_post)
+    return output
 
 @app.post("/dmd")
 def api_create_dmd(dmd_post :dmd) -> List[dmd]:
-    return create_dmd(dmd_post)
+    output = await create_dmd(dmd_post)
+    return output
 
 @app.post("/ifm")
 def api_create_ifm(ifm_post :ifm) -> List[ifm]:
-    return create_ifm(ifm_post)
+    output = await create_ifm(ifm_post)
+    return output
 
 @app.post("/ofm")
 def api_create_ofm(ofm_post :ofm) -> List[ofm]:
-    return create_ofm(ofm_post)
-
+    output = await create_ofm(ofm_post)
+    return output
+    
 @app.post("/api")
 def api_create_api(api_post :api) -> List[api]:
-    return create_api(api_post)
-
+    output = await create_api(api_post)
+    return output
+    
 @app.post("/sr")
 def api_create_sr(sr_post :sr) -> List[sr]:
-    return create_sr(sr_post)
-
+    output = await create_sr(sr_post)
+    return output
 # update record
-
 @app.put("/df/{did}")
 def api_update_df(did: str,  df_put:df) -> df:
     if did != df_put.fileGuid:
