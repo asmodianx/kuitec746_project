@@ -117,31 +117,31 @@ def api_update_df(did: str,  df_put:df) -> df:
 
 @app.put("/dmd/{did}")
 def api_update_dmd(did: str,  dmd_put:dmd) -> dmd:
-    if did != dmd_put.fileGuid:
+    if did != dmd_put.fileMetaDataGuid:
         raise HTTPException(status_code=400, detail="path id and object id must match")
     return update_dmd(dmd_put)
 
 @app.put("/ifm/{did}")
 def api_update_ifm(did: str,  ifm_put:ifm) -> ifm:
-    if did != ifm_put.fileGuid:
+    if did != ifm_put.inputFormatGuid:
         raise HTTPException(status_code=400, detail="path id and object id must match")
     return update_ifm(ifm_put)
 
 @app.put("/ofm/{did}")
 def api_update_ofm(did: str,  ofm_put:ofm) -> ofm:
-    if did != ofm_put.fileGuid:
+    if did != ofm_put.outputFormatGuid:
         raise HTTPException(status_code=400, detail="path id and object id must match")
     return update_ofm(ofm_put)
 
 @app.put("/api/{did}")
 def api_update_api(did: str,  api_put:api) -> api:
-    if did != api_put.fileGuid:
+    if did != api_put.apiGuid:
         raise HTTPException(status_code=400, detail="path id and object id must match")
     return update_api(api_put)
 
 @app.put("/sr/{did}")
 def api_update_sr(did: str,  sr_put:sr) -> sr:
-    if did != sr_put.fileGuid:
+    if did != sr_put.searchGuid:
         raise HTTPException(status_code=400, detail="path id and object id must match")
     return update_sr(sr_put)
 
