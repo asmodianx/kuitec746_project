@@ -364,7 +364,7 @@ def get_sr(did: str) -> List[sr]:
     cur.execute(SELECT_SEARCH,[did])
     for row in cur:
         sr_list=sr(searchGuid=str(row[0]),name=str(row[1]),description=str(row[2]))
-    return sr_list
+        return sr_list
 
 def create_sr(sr_create: sr) -> sr:
     db = DBConnection()
@@ -372,7 +372,7 @@ def create_sr(sr_create: sr) -> sr:
     did = str(uuid.uuid4())
     cur.execute(INSERT_SEARCH, (did, sr_create.name, sr_create.description ))
     db.connection.commit()
-    return list(get_sr(did))
+    return get_sr(did)
 
 def update_sr(sr_update: sr) -> sr:
     db = DBConnection()
