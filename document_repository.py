@@ -372,8 +372,7 @@ def create_sr(sr_create: sr) -> sr:
     did = str(uuid.uuid4())
     cur.execute(INSERT_SEARCH, (did, sr_create.name, sr_create.description ))
     db.connection.commit()
-    output = get_sr(did)
-    return output
+    return 
 
 def update_sr(sr_update: sr) -> sr:
     db = DBConnection()
