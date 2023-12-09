@@ -17,7 +17,7 @@ SELECT_ALL_FILES = 'SELECT "fileGuid", "fileContents" FROM "kershner"."InputFile
 SELECT_FILE = 'SELECT "fileGuid", "fileContents" FROM "kershner"."InputFile" WHERE "fileGuid" = %s;'
 INSERT_FILE = 'INSERT INFO kershner."InputFile" values(%s,%s);'
 UPDATE_FILE = 'UPDATE "kershner"."InputFile" "fileContents" = %s WHERE "fileGuid" = %s;'
-DELETE_FILE = 'DELETE * FROM "kershner"."InputFile" WHERE "fileGuid" = %s;'
+DELETE_FILE = 'DELETE FROM "kershner"."InputFile" WHERE "fileGuid" = %s;'
 
 # DOCUMENT META DATA DMD
 SELECT_ALL_MD = 'SELECT "APIGUID", "FileMetaDataGUID", "Name", "Description", "DateUploaded", "DateModified", "Revision", "IsCurrent", "IsDeleted", "FileGuid", "InputFormatGuid", "FileHash", "FileCacheExpiration" FROM "kershner"."FileMetadata";'
@@ -25,7 +25,7 @@ SELECT_MD = 'SELECT "APIGUID", "FileMetaDataGUID", "Name", "Description", "DateU
 INSERT_MD = 'INSERT INTO kershner."FileMetadata" values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);'
 UPDATE_MD = 'UPDATE "kershner"."FileMetadata" SET "APIGUID" = %s, "Name" = %s, "Description" = %s, "DateUploaded" = %s, "DateModified" = %s, "Revision", "IsCurrent" = %s, "IsDeleted" = %s, "FileGuid" = %s, "InputFormatGuid" = %s, "FileHash" = %s, "FileCacheExpiration" = %s WHERE "FileMetaDataGUID";'
 DELETE_MD = 'UPDATE "kershner"."FileMetadata" SET "IsDeleted" = true where "FileMetaDataGUID"=%s;'
-PURGE_MD = 'DELETE * FROM "kershner"."FileMetadata" where "FileMetaDataGUID"=%s;'
+PURGE_MD = 'DELETE FROM "kershner"."FileMetadata" where "FileMetaDataGUID"=%s;'
 
 # input format IFM
 SELECT_ALL_IF = 'SELECT "InputFormatGuid", "Name", "Description", "FileExtension", "FileMIMEType" FROM "kershner"."InputFileFormat";'
@@ -39,7 +39,7 @@ SELECT_ALL_OF = 'SELECT "OutputFormatGuid", "Name", "Description", "FunctionName
 SELECT_OF = 'SELECT "OutputFormatGuid", "Name", "Description", "FunctionName", "FileExtension", "FileMIMEType" FROM "kershner"."DataOutputFormat" WHERE "OutputFormatGuid"=%s;'
 INSERT_OF = 'INSERT INTO kershner."DataOutputFormat" VALUES(%s,%s,%s,%s,%s,%s);'
 UPDATE_OF = 'UPDATE "kershner"."DataOutputFormat" SET "Name" = %s, "Description" = %s, "FunctionName" = %s, "FileExtension" = %s, "FileMIMEType" = %s WHERE "OutputFormatGuid"=%s;'
-DELETE_OF = 'DELETE * FROM "kershner"."DataOutputFormat" WHERE "OutputFormatGuid"=%s;'
+DELETE_OF = 'DELETE FROM "kershner"."DataOutputFormat" WHERE "OutputFormatGuid"=%s;'
 
 # API API
 SELECT_ALL_API = 'SELECT "APIGUID", "API", "OwnerEmailAddress", "DateExpires", "PermissionCreate", "PermissionGlobalAdmin", "IsDisabled", "IsDeleted" FROM "kershner"."API";'
@@ -47,14 +47,14 @@ SELECT_API = 'SELECT "APIGUID", "API", "OwnerEmailAddress", "DateExpires", "Perm
 INSERT_API = 'INSERT INTO kershner."API" VALUES (%s,%s,%s,%s,%s,%s,false,false);'
 UPDATE_API = 'UPDATE "kershner"."API" SET "API" = %s, "OwnerEmailAddress" = %s, "DateExpires" = %s, "PermissionCreate" = %s, "PermissionGlobalAdmin" = %s, "IsDisabled" = %s, "IsDeleted" = %s WHERE "APIGUID" = %s;'
 DELETE_API = 'UPDATE "kershner"."API" SET IsDisabled = true,IsDeleted = true WHERE "APIGUID" = %s;'
-PURGE_API = 'DELETE * FROM "kershner"."API" WHERE "APIGUID" = %s;'
+PURGE_API = 'DELETE FROM "kershner"."API" WHERE "APIGUID" = %s;'
 
 # search SR
 SELECT_ALL_SEARCH = 'SELECT "SearchGUID", "Name", "Description" FROM "kershner"."Search";'
 SELECT_SEARCH = 'SELECT "SearchGUID", "Name", "Description" FROM "kershner"."Search" where "SearchGUID" = %s;'
 INSERT_SEARCH = 'INSERT INTO kershner."Search" VALUES(%s,%s,%s);'
 UPDATE_SEARCH = 'UPDATE "SearchGUID", "Name", "Description" FROM "kershner"."Search";'
-DELETE_SEARCH = 'DELETE * FROM "kershner"."Search" WHERE "SearchGUID" = %s;'
+DELETE_SEARCH = 'DELETE FROM "kershner"."Search" WHERE "SearchGUID" = %s;'
 
 
 #fixme: ubdates get two dids, by default it uses the one imbedded in the data object but for some reason im pulling the did in seperatly... 
