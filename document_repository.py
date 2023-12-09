@@ -357,7 +357,7 @@ def get_all_sr() -> List[sr]:
         )
     return sr_list
 
-def get_sr(did: uuid) -> List[sr]:
+def get_sr(did: str) -> List[sr]:
     sr_list = []
     db = DBConnection()
     cur = db.get_cursor()
@@ -377,7 +377,7 @@ def create_sr(sr_create: sr) -> sr:
 def update_sr(sr_update: sr) -> sr:
     db = DBConnection()
     cur = db.get_cursor()
-    did = uuid.UUID(sr_update.outputFormatGuid)
+    did =str( uuid.UUID(sr_update.outputFormatGuid))
     cur.execute(UPDATE_SEARCH, (did, sr_update.name, sr_update.description))
     db.connection.commit()
     return get_sr(did)
