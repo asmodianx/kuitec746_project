@@ -379,7 +379,7 @@ def update_sr(sr_update: sr) -> sr:
     db = DBConnection()
     cur = db.get_cursor()
     did =str( uuid.UUID(sr_update.searchGuid))
-    cur.execute(UPDATE_SEARCH, (did, sr_update.name, sr_update.description))
+    cur.execute(UPDATE_SEARCH, (sr_update.name, sr_update.description, did))
     db.connection.commit()
     return get_sr(did)
 
