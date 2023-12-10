@@ -109,8 +109,8 @@ def api_create_api(api_post :api) -> List[api]:
     return output
     
 @app.post("/sr")
-def api_create_sr(sr_post :sr) -> List[sr]:
-    output = create_sr(sr_post)
+def api_create_sr(sr_post: Any = Body(None)) -> List[sr]:
+    output = create_sr(sr(**sr_post))
     return output
 # update record
 @app.put("/df/{did}")
