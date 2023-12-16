@@ -64,7 +64,6 @@ def get_all_df() -> List[df]:
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_ALL_FILES)
-#fileGuid, fileContents
     for row in cur:
         df_list.append(
             df(
@@ -79,7 +78,6 @@ def get_all_dmd() -> List[dmd]:
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_ALL_MD)
-    #APIGUID, FileMetaDataGUID, Name, Description, DateUploaded, DateModified, Revision, IsCurrent, IsDeleted, FileGuid, InputFormatGuid, FileHash, FileCacheExpiration
     for row in cur:
         dmd_list.append(
             dmd(
@@ -148,7 +146,6 @@ def update_dmd(dmd_update: dmd) -> dmd:
     db = DBConnection()
     cur = db.get_cursor()
     did = uuid.UUID(dmd_update.fileMetaDataGUID)
-    # "APIGUID" = %s, "Name" = %s, "Description" = %s, "DateUploaded" = %s, "DateModified" = %s, "Revision", "IsCurrent" = %s, "IsDeleted" = %s, "FileGuid" = %s, "InputFormatGuid" = %s, "FileHash" = %s, "FileCacheExpiration" = %s 
     cur.execute(UPDATE_MD, (dmd_update.apiGuid, did, dmd_update.name, dmd_update.description, dmd_update.dateUploaded, dmd_update.dateModified, dmd_update.revision, dmd_update.isCurrent, dmd_update.isDeleted, dmd_update.fileGuid, dmd_update.inputFormatGuid, dmd_update.fileHash, dmd_update.fileCacheExpiration))
     db.connection.commit()
     return get_dmd(did)
@@ -180,7 +177,6 @@ def get_all_ifm() -> List[ifm]:
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_ALL_IF)
-    #InputFormatGuid, Name, Description, FileExtension, FileMIMEType
     for row in cur:
         ifm_list.append(
             ifm(
@@ -226,7 +222,6 @@ def delete_ifm(did: str):
     return
     
 #==== output format
-#OutputFormatGuid, Name, Description, FunctionName, FileExtension, FileMIMEType 
 def get_all_ofm() -> List[ofm]:
     ofm_list = []
     db = DBConnection()
@@ -278,8 +273,6 @@ def delete_ofm(did: str):
     return
     
 #=== API
-#APIGUID, API, OwnerEmailAddress, DateExpires, PermissionCreate, PermissionGlobalAdmin, IsDisabled, IsDeleted
-#(UUID('b7c4030e-942a-43c8-9274-64af9549877f'), 'TESTKEYTESTKEYTESTKEYTESTKEY', 'joel.kershner@gmail.com', datetime.datetime(2525, 12, 24, 0, 0), True, True, False, False)
 def get_all_api() -> List[api]:
     api_list = []
     db = DBConnection()
@@ -347,7 +340,6 @@ def get_all_sr() -> List[sr]:
     db = DBConnection()
     cur = db.get_cursor()
     cur.execute(SELECT_ALL_SEARCH)
-    #SearchGUID, Name, Description
     for row in cur:
         sr_list.append(
             sr(
