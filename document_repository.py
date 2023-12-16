@@ -56,9 +56,6 @@ INSERT_SEARCH = 'INSERT INTO kershner."Search" VALUES(%s,%s,%s);'
 UPDATE_SEARCH = 'UPDATE kershner."Search" set "Name"=%s, "Description"=%s where "SearchGUID"=%s;'
 DELETE_SEARCH = 'DELETE FROM kershner."Search" WHERE "SearchGUID" = %s;'
 
-
-#fixme: ubdates get two dids, by default it uses the one imbedded in the data object but for some reason im pulling the did in seperatly... 
-
 def get_all_df() -> List[df]:
     df_list = []
     db = DBConnection()
