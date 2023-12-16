@@ -1,0 +1,12 @@
+Project documents:
+- itec746.pdf - project design document
+- schema.sql - schema
+- data.sql - database data
+- config.py - configuration script
+- main.py - main body of the program
+- document_model.py - data models
+- document_repository.py - sql, main collection of functions
+- db_connection.py - database abstraction layer
+- requirements.txt - python required libraries
+- start.sh - shell script to start the api program
+- LICENSE - description of the project license 
