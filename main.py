@@ -1,9 +1,7 @@
 import uuid
 
-#from typing import List
-#from fastapi import FastAPI, HTTPException
-from typing import List, Any
-from fastapi import FastAPI, HTTPException, Body
+from typing import List
+from fastapi import FastAPI, HTTPException
 
 from document_model import df, dmd, ifm, ofm, api, sr
 from document_repository import (get_all_df, get_all_dmd, get_df, get_dmd, create_df, 
@@ -13,13 +11,6 @@ from document_repository import (get_all_df, get_all_dmd, get_df, get_dmd, creat
     get_all_sr, get_sr, create_sr,update_sr, delete_sr)
 
 app = FastAPI()
-
-#TODO: df and dmd - the insert statements for DMD needs to check to see if the 
-#file guid and ifm guid exists before inserting
-
-#todo: create sql to return GUID exists for all tables then run it for updates inserts
-
-#fixme: im getting in nulls for some of the fields
 
 
 # === get all record
@@ -78,11 +69,6 @@ def api_get_sr(did1: str) -> sr:
     return get_sr(did)
 
 #=== create record
-#@app.post("/ifm")
-#async def api_create_ifm(ifm_post :ifm) -> List[ifm]:
-#    new_ifm = await create_ifm(ifm_post)
-#    return new_ifm
-
 @app.post("/df")
 def api_create_df(df_post :df) -> List[df]:
     output = create_df(df_post)
@@ -112,6 +98,7 @@ def api_create_api(api_post :api) -> List[api]:
 def api_create_sr(sr_post: Any = Body(None)) -> List[sr]:
     output = create_sr(sr(**sr_post))
     return output
+
 # update record
 @app.put("/df/{did}")
 def api_update_df(did: str,  df_put:df) -> df:
